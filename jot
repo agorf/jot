@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+[[ -f $JOT_HOME/.env ]] && source $JOT_HOME/.env
+
+JOT_EDITOR=${JOT_EDITOR:-$EDITOR}
+JOT_DATE_FMT=${JOT_DATE_FMT:-%Y-%m-%d}
+
+case $1 in
+  e|ed|edit|'')
+    shift
+    cmd=edit
+    ;;
+  c|cat)
+    shift
+    cmd=cat
+    ;;
+  *)
+    echo "Unrecognized command: $1"
+    exit 1
+    ;;
+esac
+
+case $1 in
+  td|today|'')
+    date=$(date +$JOT_DATE_FMT)
+    ;;
+  y|yd|yesterday)
+    date=$(date -d yesterday +$JOT_DATE_FMT)
+    ;;
+  tm|tommorow)
+    date=$(date -d tomorrow +$JOT_DATE_FMT)
+    ;;
+  *)
+    date=$1
+    ;;
+esac
+
+note_path="${JOT_HOME%/}/$date.txt"
+
+if [[ $cmd == 'cat' ]]; then
+  if [[ ! -f "$note_path" ]]; then
+    echo "File does not exist: $note_path"
+    exit 2
+  fi
+
+  echo "$note_path" | xargs basename
+  echo
+  cat "$note_path"
+  exit 0
+fi
+
+echo "Editing $note_path"
+
+if [[ -f $note_path ]]; then
+  $JOT_EDITOR "$JOT_EDIT_OPTS" "$note_path"
+else
+  $JOT_EDITOR "$JOT_NEW_OPTS" "$note_path"
+fi
