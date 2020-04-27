@@ -14,6 +14,10 @@ case $1 in
     shift
     cmd=cat
     ;;
+  l|ls|list)
+    shift
+    cmd=list
+    ;;
   *)
     echo "Unrecognized command: $1"
     exit 1
@@ -34,6 +38,11 @@ case $1 in
     date=$1
     ;;
 esac
+
+if [[ $cmd == 'list' ]]; then
+  ls "${JOT_HOME%/}"/*.txt | xargs -n 1 basename
+  exit 0
+fi
 
 note_path="${JOT_HOME%/}/$date.txt"
 
