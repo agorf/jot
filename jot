@@ -68,7 +68,14 @@ cmd_edit() {
 cmd_list() {
   echo "Today is $(date +'%a, %d %b %Y')"
   echo
-  ls "$JOT_HOME"/*.$JOT_EXT | xargs -n 1 basename
+
+  for file in "$JOT_HOME"/*.$JOT_EXT; do
+    date=$(basename $file .$JOT_EXT)
+    lines=$(wc -l $file | cut -d ' ' -f 1)
+    echo -n "$date"
+    printf ' (%2d)' $lines
+    echo
+  done
 }
 
 case $1 in
