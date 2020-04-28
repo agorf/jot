@@ -2,10 +2,13 @@
 
 [[ -f $JOT_HOME/.env ]] && source $JOT_HOME/.env
 
-JOT_HOME="${JOT_HOME%/}"
+JOT_HOME="${JOT_HOME:-.}"
 JOT_EDITOR=${JOT_EDITOR:-$EDITOR}
 JOT_DATE_FMT=${JOT_DATE_FMT:-%Y-%m-%d}
 JOT_EXT=txt
+
+# Drop trailing /
+JOT_HOME="${JOT_HOME%/}"
 
 case $1 in
   e|ed|edit|'')
