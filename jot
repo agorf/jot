@@ -58,7 +58,7 @@ date:
 EOF
 }
 
-cmd_view() {
+view() {
   local date="$1"
   local file="$(file_from_date $date)"
 
@@ -67,7 +67,7 @@ cmd_view() {
   $JOT_PAGER "$file"
 }
 
-cmd_edit() {
+edit() {
   local date="$1"
   local file="$(file_from_date $date)"
 
@@ -83,7 +83,7 @@ cmd_edit() {
   fi
 }
 
-cmd_list() {
+list() {
   echo "Today is $(date +'%a, %d %b %Y')"
   echo
 
@@ -99,16 +99,16 @@ cmd_list() {
 case $1 in
   e|edit|'')
     date="$(parse_date $2)"
-    cmd_edit "$date"
+    edit "$date"
     exit
     ;;
   v|view)
     date="$(parse_date $2)"
-    cmd_view "$date"
+    view "$date"
     exit
     ;;
   l|list|ls)
-    cmd_list
+    list
     exit
     ;;
   *)
