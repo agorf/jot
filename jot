@@ -67,7 +67,7 @@ echo 'Press any key to continue'
 read
 
 if [[ -f $note_path ]]; then
-  $JOT_EDITOR "$JOT_EDIT_OPTS" "$note_path"
+  sh -c "$JOT_EDITOR $JOT_EDIT_OPTS $note_path"
 else
-  $JOT_EDITOR "$JOT_NEW_OPTS" "$note_path"
+  sh -c "$JOT_EDITOR $JOT_NEW_OPTS $note_path"
 fi
