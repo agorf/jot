@@ -39,6 +39,25 @@ file_from_date() {
   echo "$JOT_HOME/$1.$JOT_EXT"
 }
 
+usage() {
+  cat <<-EOF
+Usage: jot [command] [date]
+
+command:
+
+  v[iew]        view notes for a day
+  e[dit]        edit notes for a day (default)
+  l[ist] or ls  list notes
+
+date:
+
+  tod[ay]     or td  perform command for today
+  y[esterday] or yd                      yesterday
+  tom[orrow]  or tm                      tomorrow
+  2020-04-28                             2020-04-28
+EOF
+}
+
 cmd_view() {
   local date="$1"
   local file="$(file_from_date $date)"
@@ -93,7 +112,7 @@ case $1 in
     exit
     ;;
   *)
-    echo "Unrecognized command: $1"
+    usage
     exit 1
     ;;
 esac
