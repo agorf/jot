@@ -45,8 +45,6 @@ cmd_view() {
 
   check_file_exists $file
 
-  basename "$file" .$JOT_EXT
-  echo
   $JOT_PAGER "$file"
 }
 
