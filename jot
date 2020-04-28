@@ -20,13 +20,13 @@ check_file_exists() {
 
 parse_date() {
   case $1 in
-    td|today|'')
+    tod|today|td|'')
       date +$JOT_DATE_FMT
       ;;
-    y|yd|yesterday)
+    y|yesterday|yd)
       date -d yesterday +$JOT_DATE_FMT
       ;;
-    tm|tommorow)
+    tom|tommorow|tm)
       date -d tomorrow +$JOT_DATE_FMT
       ;;
     *)
@@ -78,7 +78,7 @@ cmd_list() {
 }
 
 case $1 in
-  e|ed|edit|'')
+  e|edit|'')
     date="$(parse_date $2)"
     cmd_edit "$date"
     exit
@@ -88,7 +88,7 @@ case $1 in
     cmd_view "$date"
     exit
     ;;
-  l|ls|list)
+  l|list|ls)
     cmd_list
     exit
     ;;
