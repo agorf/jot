@@ -62,6 +62,9 @@ if [[ $cmd == 'cat' ]]; then
 fi
 
 echo "Editing $note_path"
+echo
+echo 'Press any key to continue'
+read
 
 if [[ -f $note_path ]]; then
   $JOT_EDITOR "$JOT_EDIT_OPTS" "$note_path"
