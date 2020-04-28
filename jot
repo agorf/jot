@@ -26,6 +26,14 @@ case $1 in
     ;;
 esac
 
+echo "Today is $(date +'%a, %d %b %Y')"
+echo
+
+if [[ $cmd == 'list' ]]; then
+  ls "$JOT_HOME"/*.$JOT_EXT | xargs -n 1 basename
+  exit 0
+fi
+
 case $1 in
   td|today|'')
     date=$(date +$JOT_DATE_FMT)
@@ -40,14 +48,6 @@ case $1 in
     date=$1
     ;;
 esac
-
-echo "Today is $(date +'%a, %d %b %Y')"
-echo
-
-if [[ $cmd == 'list' ]]; then
-  ls "$JOT_HOME"/*.$JOT_EXT | xargs -n 1 basename
-  exit 0
-fi
 
 note_path="$JOT_HOME/$date.$JOT_EXT"
 
