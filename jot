@@ -36,7 +36,8 @@ parse_date() {
 }
 
 file_from_date() {
-  echo "$JOT_HOME/$1.$JOT_EXT"
+  date="$(parse_date $1)"
+  echo "$JOT_HOME/$date.$JOT_EXT"
 }
 
 usage() {
@@ -46,7 +47,7 @@ Usage: jot [command] [date]
 command:
 
   v[iew]        view notes for a day
-  e[dit]        edit notes for a day (default)
+  e[dit]        edit notes for one or more days (default)
   l[ist] or ls  list notes
 
 date:
@@ -59,8 +60,7 @@ EOF
 }
 
 view() {
-  local date="$1"
-  local file="$(file_from_date $date)"
+  local file="$(file_from_date $1)"
 
   check_file_exists $file
 
@@ -68,19 +68,28 @@ view() {
 }
 
 edit() {
-  local date="$1"
-  local file="$(file_from_date $date)"
+  local files_arr=()
 
-  echo "Editing $file"
+  if [[ $# -eq 0 ]]; then
+    local file=$(file_from_date td)
+    files_arr=("$file")
+  else
+    for arg in "$@"; do
+      local file=$(file_from_date $arg)
+      files_arr+=("$file")
+    done
+  fi
+
+  local files="${files_arr[@]}"
+
+  echo "Editing $# file(s):"
+  echo
+  echo $files | xargs -n 1 echo
   echo
   echo 'Press any key to continue'
   read
 
-  if [[ -f $file ]]; then
-    sh -c "$JOT_EDITOR $JOT_EDIT_OPTS $file"
-  else
-    sh -c "$JOT_EDITOR $JOT_NEW_OPTS $file"
-  fi
+  sh -c "$JOT_EDITOR $JOT_EDITOR_OPTS $files"
 }
 
 list() {
@@ -98,8 +107,8 @@ list() {
 
 case $1 in
   e|edit|'')
-    date="$(parse_date $2)"
-    edit "$date"
+    shift
+    edit "$@"
     exit
     ;;
   v|view)
