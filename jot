@@ -56,7 +56,7 @@ if [[ $cmd == 'cat' ]]; then
     exit 2
   fi
 
-  echo "$note_path" | xargs basename
+  basename "$note_path"
   echo
   cat "$note_path"
   exit 0
