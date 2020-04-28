@@ -57,7 +57,7 @@ if [[ $cmd == 'cat' ]]; then
     exit 2
   fi
 
-  basename "$note_path"
+  basename "$note_path" .$JOT_EXT
   echo
   cat "$note_path"
   exit 0
