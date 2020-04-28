@@ -6,7 +6,7 @@ JOT_HOME="${JOT_HOME:-.}"
 JOT_EDITOR=${JOT_EDITOR:-$EDITOR}
 JOT_PAGER=${JOT_PAGER:-less}
 JOT_DATE_FMT=${JOT_DATE_FMT:-%Y-%m-%d}
-JOT_EXT=txt
+JOT_EXT=${JOT_EXT:-txt}
 
 # Drop trailing /
 JOT_HOME="${JOT_HOME%/}"
