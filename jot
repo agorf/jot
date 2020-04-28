@@ -39,6 +39,9 @@ case $1 in
     ;;
 esac
 
+echo "Today is $(date +'%a, %d %b %Y')"
+echo
+
 if [[ $cmd == 'list' ]]; then
   ls "${JOT_HOME%/}"/*.txt | xargs -n 1 basename
   exit 0
