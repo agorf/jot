@@ -5,6 +5,7 @@
 JOT_HOME="${JOT_HOME%/}"
 JOT_EDITOR=${JOT_EDITOR:-$EDITOR}
 JOT_DATE_FMT=${JOT_DATE_FMT:-%Y-%m-%d}
+JOT_EXT=txt
 
 case $1 in
   e|ed|edit|'')
@@ -44,11 +45,11 @@ echo "Today is $(date +'%a, %d %b %Y')"
 echo
 
 if [[ $cmd == 'list' ]]; then
-  ls "$JOT_HOME"/*.txt | xargs -n 1 basename
+  ls "$JOT_HOME"/*.$JOT_EXT | xargs -n 1 basename
   exit 0
 fi
 
-note_path="$JOT_HOME/$date.txt"
+note_path="$JOT_HOME/$date.$JOT_EXT"
 
 if [[ $cmd == 'cat' ]]; then
   if [[ ! -f "$note_path" ]]; then
