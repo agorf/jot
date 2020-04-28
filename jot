@@ -55,9 +55,9 @@ command:
 date:
 
   tod[ay]     or td  perform command for today
-  y[esterday] or yd                      yesterday
-  tom[orrow]  or tm                      tomorrow
-  2020-04-28                             2020-04-28
+  y[esterday] or yd                  ... yesterday
+  tom[orrow]  or tm                  ... tomorrow
+  2020-04-28                         ... 2020-04-28
 EOF
 }
 
