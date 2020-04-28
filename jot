@@ -5,6 +5,7 @@
 JOT_HOME="${JOT_HOME:-.}"
 JOT_EDITOR=${JOT_EDITOR:-$EDITOR}
 JOT_PAGER=${JOT_PAGER:-less}
+JOT_COPY=${JOT_COPY:-xclip}
 JOT_DATE_FMT=${JOT_DATE_FMT:-%Y-%m-%d}
 JOT_EXT=${JOT_EXT:-txt}
 
@@ -47,6 +48,7 @@ Usage: jot [command] [date]
 command:
 
   v[iew]        view notes for a day
+  c[opy] or cp  copy notes for a day
   e[dit]        edit notes for one or more days (default)
   l[ist] or ls  list notes
 
@@ -65,6 +67,14 @@ view() {
   check_file_exists $file
 
   $JOT_PAGER "$file"
+}
+
+copy() {
+  local file="$(file_from_date $1)"
+
+  check_file_exists $file
+
+  $JOT_COPY "$file" && echo "Copied to clipboard: $file"
 }
 
 edit() {
@@ -114,6 +124,11 @@ case $1 in
   v|view)
     date="$(parse_date $2)"
     view "$date"
+    exit
+    ;;
+  c|copy|cp)
+    date="$(parse_date $2)"
+    copy "$date"
     exit
     ;;
   l|list|ls)
