@@ -4,6 +4,7 @@
 
 JOT_HOME="${JOT_HOME:-.}"
 JOT_EDITOR=${JOT_EDITOR:-$EDITOR}
+JOT_PAGER=${JOT_PAGER:-less}
 JOT_DATE_FMT=${JOT_DATE_FMT:-%Y-%m-%d}
 JOT_EXT=txt
 
@@ -38,7 +39,7 @@ file_from_date() {
   echo "$JOT_HOME/$1.$JOT_EXT"
 }
 
-cmd_cat() {
+cmd_view() {
   local date="$1"
   local file="$(file_from_date $date)"
 
@@ -46,7 +47,7 @@ cmd_cat() {
 
   basename "$file" .$JOT_EXT
   echo
-  cat "$file"
+  $JOT_PAGER "$file"
 }
 
 cmd_edit() {
@@ -84,9 +85,9 @@ case $1 in
     cmd_edit "$date"
     exit
     ;;
-  c|cat)
+  v|view)
     date="$(parse_date $2)"
-    cmd_cat "$date"
+    cmd_view "$date"
     exit
     ;;
   l|ls|list)
