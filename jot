@@ -10,69 +10,84 @@ JOT_EXT=txt
 # Drop trailing /
 JOT_HOME="${JOT_HOME%/}"
 
+check_file_exists() {
+  if [[ ! -f "$1" ]]; then
+    echo "File does not exist: $1"
+    exit 1
+  fi
+}
+
+parse_date() {
+  case $1 in
+    td|today|'')
+      date +$JOT_DATE_FMT
+      ;;
+    y|yd|yesterday)
+      date -d yesterday +$JOT_DATE_FMT
+      ;;
+    tm|tommorow)
+      date -d tomorrow +$JOT_DATE_FMT
+      ;;
+    *)
+      $1
+      ;;
+  esac
+}
+
+file_from_date() {
+  echo "$JOT_HOME/$1.$JOT_EXT"
+}
+
+cmd_cat() {
+  local date="$1"
+  local file="$(file_from_date $date)"
+
+  check_file_exists $file
+
+  basename "$file" .$JOT_EXT
+  echo
+  cat "$file"
+}
+
+cmd_edit() {
+  local date="$1"
+  local file="$(file_from_date $date)"
+
+  echo "Editing $file"
+  echo
+  echo 'Press any key to continue'
+  read
+
+  if [[ -f $file ]]; then
+    sh -c "$JOT_EDITOR $JOT_EDIT_OPTS $file"
+  else
+    sh -c "$JOT_EDITOR $JOT_NEW_OPTS $file"
+  fi
+}
+
+cmd_list() {
+  echo "Today is $(date +'%a, %d %b %Y')"
+  echo
+  ls "$JOT_HOME"/*.$JOT_EXT | xargs -n 1 basename
+}
+
 case $1 in
   e|ed|edit|'')
-    shift
-    cmd=edit
+    date="$(parse_date $2)"
+    cmd_edit "$date"
+    exit
     ;;
   c|cat)
-    shift
-    cmd=cat
+    date="$(parse_date $2)"
+    cmd_cat "$date"
+    exit
     ;;
   l|ls|list)
-    shift
-    cmd=list
+    cmd_list
+    exit
     ;;
   *)
     echo "Unrecognized command: $1"
     exit 1
     ;;
 esac
-
-echo "Today is $(date +'%a, %d %b %Y')"
-echo
-
-if [[ $cmd == 'list' ]]; then
-  ls "$JOT_HOME"/*.$JOT_EXT | xargs -n 1 basename
-  exit 0
-fi
-
-case $1 in
-  td|today|'')
-    date=$(date +$JOT_DATE_FMT)
-    ;;
-  y|yd|yesterday)
-    date=$(date -d yesterday +$JOT_DATE_FMT)
-    ;;
-  tm|tommorow)
-    date=$(date -d tomorrow +$JOT_DATE_FMT)
-    ;;
-  *)
-    date=$1
-    ;;
-esac
-
-note_path="$JOT_HOME/$date.$JOT_EXT"
-
-if [[ $cmd == 'cat' ]]; then
-  if [[ ! -f "$note_path" ]]; then
-    echo "File does not exist: $note_path"
-    exit 2
-  fi
-
-  basename "$note_path" .$JOT_EXT
-  echo
-  cat "$note_path"
-  exit 0
-fi
-
-echo "Editing $note_path"
-echo
-echo 'Press any key to continue'
-read
-
-if [[ -f $note_path ]]; then
-  sh -c "$JOT_EDITOR $JOT_EDIT_OPTS $note_path"
-else
-  sh -c "$JOT_EDITOR $JOT_NEW_OPTS $note_path"
-fi
