@@ -103,7 +103,9 @@ copy() {
 
   grep -v '^#' "$file" | $JOT_COPY
 
-  [[ $? -eq 0 ]] && echo "Copied to clipboard: $file"
+  local lines=$(grep -v '^#' "$file" | wc -l)
+
+  [[ $? -eq 0 ]] && echo "Copied $lines line(s) to clipboard"
 }
 
 edit() {
