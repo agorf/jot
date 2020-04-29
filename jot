@@ -75,7 +75,9 @@ copy() {
 
   check_file_exists $file
 
-  $JOT_COPY "$file" && echo "Copied to clipboard: $file"
+  grep -v '^#' "$file" | $JOT_COPY
+
+  [[ $? -eq 0 ]] && echo "Copied to clipboard: $file"
 }
 
 edit() {
