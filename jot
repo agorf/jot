@@ -50,6 +50,7 @@ command:
   e[dit]        edit notes for one or more days (default)
   c[opy] or cp  copy notes for a day
   l[ist] or ls  list notes
+  help          print this text
 
 Any other command will be executed and passed any notes after --
 
