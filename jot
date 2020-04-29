@@ -4,7 +4,6 @@
 
 JOT_HOME="${JOT_HOME:-.}"
 JOT_EDITOR=${JOT_EDITOR:-$EDITOR}
-JOT_PAGER=${JOT_PAGER:-less}
 JOT_COPY=${JOT_COPY:-xclip}
 JOT_DATE_FMT=${JOT_DATE_FMT:-%Y-%m-%d}
 JOT_DATE_FRIENDLY_FMT="${JOT_DATE_FRIENDLY_FMT:-%a, %d %b %Y}"
@@ -48,10 +47,17 @@ Usage: jot [command] [date]
 
 command:
 
-  v[iew]        view notes for a day
-  c[opy] or cp  copy notes for a day
   e[dit]        edit notes for one or more days (default)
+  c[opy] or cp  copy notes for a day
   l[ist] or ls  list notes
+
+Any other command will be executed and passed any notes after --
+
+For example:
+
+  jot less -N -- yd td
+
+  jot cat
 
 date:
 
@@ -62,12 +68,31 @@ date:
 EOF
 }
 
-view() {
-  local file="$(file_from_date $1)"
+call() {
+  local seen_separator=false
+  local cmd=''
+  local files=()
 
-  check_file_exists $file
+  for arg in "$@"; do
+    if [[ $seen_separator == 'false' ]]; then
+      if [[ $arg == '--' ]]; then
+        seen_separator=true
+      else
+        cmd="$cmd$arg "
+      fi
+    else
+      local file=$(file_from_date $arg)
+      files+=("$file")
+    fi
+  done
 
-  $JOT_PAGER "$file"
+  local files_str="${files[@]}"
+
+  if [[ -z "$files_str" ]]; then
+    files_str=$(file_from_date td)
+  fi
+
+  sh -c "$cmd $files_str"
 }
 
 copy() {
@@ -81,21 +106,21 @@ copy() {
 }
 
 edit() {
-  local files_arr=()
+  local files=()
 
   if [[ $# -eq 0 ]]; then
     local file=$(file_from_date td)
-    files_arr=("$file")
+    files=("$file")
   else
     for arg in "$@"; do
       local file=$(file_from_date $arg)
-      files_arr+=("$file")
+      files+=("$file")
     done
   fi
 
-  local files="${files_arr[@]}"
+  local files_str="${files[@]}"
 
-  sh -c "$JOT_EDITOR $JOT_EDITOR_OPTS $files"
+  sh -c "$JOT_EDITOR $JOT_EDITOR_OPTS $files_str"
 }
 
 list() {
@@ -132,8 +157,12 @@ case $1 in
     list
     exit
     ;;
-  *)
+  help)
     usage
+    exit
+    ;;
+  *)
+    call "$@"
     exit
     ;;
 esac
