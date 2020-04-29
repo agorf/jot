@@ -5,7 +5,7 @@
 JOT_HOME="${JOT_HOME:-.}"
 JOT_EDITOR=${JOT_EDITOR:-$EDITOR}
 JOT_COPY=${JOT_COPY:-xclip}
-JOT_DATE_FMT=${JOT_DATE_FMT:-%Y-%m-%d}
+JOT_DATE_FMT="${JOT_DATE_FMT:-%Y-%m-%d}"
 JOT_DATE_FRIENDLY_FMT="${JOT_DATE_FRIENDLY_FMT:-%a, %d %b %Y}"
 JOT_EXT=${JOT_EXT:-txt}
 
@@ -22,13 +22,13 @@ check_file_exists() {
 parse_date() {
   case $1 in
     tod|today|td|'')
-      date +$JOT_DATE_FMT
+      date +"$JOT_DATE_FMT"
       ;;
     y|yesterday|yd)
-      date -d yesterday +$JOT_DATE_FMT
+      date -d yesterday +"$JOT_DATE_FMT"
       ;;
     tom|tommorow|tm)
-      date -d tomorrow +$JOT_DATE_FMT
+      date -d tomorrow +"$JOT_DATE_FMT"
       ;;
     *)
       echo $1
@@ -76,13 +76,13 @@ call() {
 
   for arg in "$@"; do
     if [[ $seen_separator == 'false' ]]; then
-      if [[ $arg == '--' ]]; then
+      if [[ "$arg" == '--' ]]; then
         seen_separator=true
       else
         cmd="$cmd$arg "
       fi
     else
-      local file=$(file_from_date $arg)
+      local file="$(file_from_date $arg)"
       files+=("$file")
     fi
   done
@@ -90,7 +90,7 @@ call() {
   local files_str="${files[@]}"
 
   if [[ -z "$files_str" ]]; then
-    files_str=$(file_from_date td)
+    files_str="$(file_from_date td)"
   fi
 
   sh -c "$cmd $files_str"
@@ -110,11 +110,11 @@ edit() {
   local files=()
 
   if [[ $# -eq 0 ]]; then
-    local file=$(file_from_date td)
+    local file="$(file_from_date td)"
     files=("$file")
   else
     for arg in "$@"; do
-      local file=$(file_from_date $arg)
+      local file="$(file_from_date $arg)"
       files+=("$file")
     done
   fi
