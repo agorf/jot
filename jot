@@ -158,7 +158,7 @@ case $1 in
     list
     exit
     ;;
-  help)
+  help|-h|--help)
     usage
     exit
     ;;
