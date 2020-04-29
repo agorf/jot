@@ -93,13 +93,6 @@ edit() {
 
   local files="${files_arr[@]}"
 
-  echo "Editing $# file(s):"
-  echo
-  echo $files | xargs -n 1 echo
-  echo
-  echo 'Press any key to continue'
-  read
-
   sh -c "$JOT_EDITOR $JOT_EDITOR_OPTS $files"
 }
 
