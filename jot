@@ -98,7 +98,7 @@ For example:
 
   jot less -- tm
 
-  jot ls
+  jot ls -lh
 EOF
 }
 
