@@ -5,7 +5,7 @@
 JOT_HOME="${JOT_HOME:-.}"
 JOT_EDITOR=${JOT_EDITOR:-$EDITOR}
 JOT_COPY=${JOT_COPY:-xclip}
-JOT_DATE_FMT="${JOT_DATE_FMT:-%Y-%m-%d}"
+JOT_DATE_FILE_FMT="${JOT_DATE_FILE_FMT:-%Y-%m-%d}"
 JOT_DATE_FRIENDLY_FMT="${JOT_DATE_FRIENDLY_FMT:-%a, %d %b %Y}"
 JOT_EXT=${JOT_EXT:-txt}
 
@@ -22,13 +22,13 @@ check_file_exists() {
 parse_date() {
   case $1 in
     tod|today|td|'')
-      date +"$JOT_DATE_FMT"
+      date +"$JOT_DATE_FILE_FMT"
       ;;
     y|yesterday|yd)
-      date -d yesterday +"$JOT_DATE_FMT"
+      date -d yesterday +"$JOT_DATE_FILE_FMT"
       ;;
     tom|tommorow|tm)
-      date -d tomorrow +"$JOT_DATE_FMT"
+      date -d tomorrow +"$JOT_DATE_FILE_FMT"
       ;;
     *)
       echo $1
