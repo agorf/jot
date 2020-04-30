@@ -79,14 +79,14 @@ command:
 
 date:
 
-  td or today      perform command for today
-  yd or yesterday  perform command for yesterday
-  tm or tomorrow   perform command for tomorrow
-  pwd              perform command for previous working day
-  nwd              perform command for next working day
-  2020-04-28       perform command for 2020-04-28
-  3 days ago       perform command for 3 days ago
-  2 days           perform command for 2 days ahead
+  td or today
+  yd or yesterday
+  tm or tomorrow
+  pwd              previous working day
+  nwd              next working day
+  3 days ago
+  2 days           2 days ahead
+  2020-04-28       absolute date
 
 Any other command will be executed and passed any notes after --
 
