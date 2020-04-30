@@ -10,6 +10,10 @@ JOT_EXT=${JOT_EXT:-txt}
 # Drop trailing /
 JOT_HOME=${JOT_HOME%/}
 
+mkdir_home() {
+  mkdir -p "$JOT_HOME"
+}
+
 prev_workday() {
   day_of_week=$(date -d today +%w)
 
@@ -180,6 +184,7 @@ list() {
 case $1 in
   e|edit|'')
     shift
+    mkdir_home
     edit "$@"
     exit
     ;;
@@ -189,6 +194,7 @@ case $1 in
     exit
     ;;
   l|list)
+    mkdir_home
     list
     exit
     ;;
@@ -197,6 +203,7 @@ case $1 in
     exit
     ;;
   *)
+    mkdir_home
     call "$@"
     exit
     ;;
