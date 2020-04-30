@@ -10,13 +10,6 @@ JOT_EXT=${JOT_EXT:-txt}
 # Drop trailing /
 JOT_HOME="${JOT_HOME%/}"
 
-check_file_exists() {
-  if [[ ! -f "$1" ]]; then
-    echo "File does not exist: $1"
-    exit 1
-  fi
-}
-
 parse_date() {
   case $1 in
     tod|today|td|'')
@@ -98,8 +91,6 @@ call() {
 
 copy() {
   local file="$(file_from_date $1)"
-
-  check_file_exists $file
 
   grep -v '^#' "$file" | $JOT_COPY
 
