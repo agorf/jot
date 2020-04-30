@@ -134,7 +134,6 @@ list() {
     date=$(date -d "$file_date" +"$JOT_DATE_SHOW_FMT" | tr -d '\n')
     lines=$(wc -l $file | cut -d ' ' -f 1)
 
-
     if [[ "$date" == "$today_date" ]]; then
       echo -n '> '
     else
