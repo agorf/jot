@@ -84,8 +84,8 @@ date:
   tm or tomorrow
   pwd              previous working day
   nwd              next working day
-  3 days ago
-  2 days           2 days ahead
+  "3 days ago"
+  "2 days"         2 days ahead
   2020-04-28       absolute date
 
 Any other command will be executed and passed any notes after --
