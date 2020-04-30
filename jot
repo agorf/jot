@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-JOT_HOME="${JOT_HOME:-.}"
+JOT_HOME=${JOT_HOME:-.}
 JOT_EDITOR=${JOT_EDITOR:-$EDITOR}
 JOT_COPY=${JOT_COPY:-xclip}
-JOT_DATE_FILE_FMT="${JOT_DATE_FILE_FMT:-%Y-%m-%d}"
-JOT_DATE_SHOW_FMT="${JOT_DATE_SHOW_FMT:-%a, %d %b %Y}"
+JOT_DATE_FILE_FMT=${JOT_DATE_FILE_FMT:-%Y-%m-%d}
+JOT_DATE_SHOW_FMT=${JOT_DATE_SHOW_FMT:-%a, %d %b %Y}
 JOT_EXT=${JOT_EXT:-txt}
 
 # Drop trailing /
-JOT_HOME="${JOT_HOME%/}"
+JOT_HOME=${JOT_HOME%/}
 
 parse_date() {
   case $1 in
@@ -28,7 +28,7 @@ parse_date() {
 }
 
 file_from_date() {
-  date="$(parse_date $1)"
+  date=$(parse_date "$1")
   echo "$JOT_HOME/$date.$JOT_EXT"
 }
 
@@ -77,7 +77,7 @@ call() {
         cmd="$cmd$arg "
       fi
     else
-      local file="$(file_from_date $arg)"
+      local file=$(file_from_date "$arg")
       files+=("$file")
     fi
   done
@@ -85,14 +85,14 @@ call() {
   local files_str="${files[@]}"
 
   if [[ -z "$files_str" ]]; then
-    files_str="$(file_from_date td)"
+    files_str=$(file_from_date td)
   fi
 
   sh -c "$cmd $files_str"
 }
 
 copy() {
-  local file="$(file_from_date $1)"
+  local file=$(file_from_date "$1")
 
   grep -v '^#' "$file" | $JOT_COPY
 
@@ -105,11 +105,11 @@ edit() {
   local files=()
 
   if [[ $# -eq 0 ]]; then
-    local file="$(file_from_date td)"
+    local file=$(file_from_date td)
     files=("$file")
   else
     for arg in "$@"; do
-      local file="$(file_from_date $arg)"
+      local file=$(file_from_date "$arg")
       files+=("$file")
     done
   fi
@@ -123,9 +123,9 @@ list() {
   today_date=$(date +"$JOT_DATE_SHOW_FMT")
 
   for file in "$JOT_HOME"/*.$JOT_EXT; do
-    file_date=$(basename $file .$JOT_EXT)
+    file_date=$(basename "$file" .$JOT_EXT)
     date=$(date -d "$file_date" +"$JOT_DATE_SHOW_FMT" | tr -d '\n')
-    lines=$(wc -l $file | cut -d ' ' -f 1)
+    lines=$(wc -l "$file" | cut -d ' ' -f 1)
 
     if [[ "$date" == "$today_date" ]]; then
       echo -n '> '
@@ -135,7 +135,7 @@ list() {
 
     echo -n "$date"
     printf ' (%2d) ' $lines
-    echo $file
+    echo "$file"
   done
 }
 
@@ -146,7 +146,7 @@ case $1 in
     exit
     ;;
   c|copy)
-    date="$(parse_date $2)"
+    date=$(parse_date "$2")
     copy "$date"
     exit
     ;;
