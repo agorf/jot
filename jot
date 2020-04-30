@@ -153,11 +153,6 @@ case $1 in
     edit "$@"
     exit
     ;;
-  v|view)
-    date="$(parse_date $2)"
-    view "$date"
-    exit
-    ;;
   c|copy)
     date="$(parse_date $2)"
     copy "$date"
