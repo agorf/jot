@@ -12,13 +12,13 @@ JOT_HOME="${JOT_HOME%/}"
 
 parse_date() {
   case $1 in
-    tod|today|td|'')
+    td|today|'')
       date +"$JOT_DATE_FILE_FMT"
       ;;
-    y|yesterday|yd)
+    yd|yesterday)
       date -d yesterday +"$JOT_DATE_FILE_FMT"
       ;;
-    tom|tommorow|tm)
+    tm|tommorow)
       date -d tomorrow +"$JOT_DATE_FILE_FMT"
       ;;
     *)
@@ -45,10 +45,10 @@ command:
 
 date:
 
-  tod[ay]     or td  perform command for today
-  y[esterday] or yd                  ... yesterday
-  tom[orrow]  or tm                  ... tomorrow
-  2020-04-28                         ... 2020-04-28
+  td or today      perform command for today
+  yd or yesterday  perform command for yesterday
+  tm or tomorrow   perform command for tomorrow
+  2020-04-28       perform command for 2020-04-28
 
 Any other command will be executed and passed any notes after --
 
