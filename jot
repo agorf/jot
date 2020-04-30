@@ -3,8 +3,8 @@
 JOT_HOME=${JOT_HOME:-.}
 JOT_EDITOR=${JOT_EDITOR:-$EDITOR}
 JOT_COPY=${JOT_COPY:-xclip}
-JOT_DATE_FILE_FMT=${JOT_DATE_FILE_FMT:-%Y-%m-%d}
-JOT_DATE_SHOW_FMT=${JOT_DATE_SHOW_FMT:-%a, %d %b %Y}
+JOT_DATE_FILE_FMT='%Y-%m-%d'
+JOT_DATE_FMT=${JOT_DATE_FMT:-%a, %d %b %Y}
 JOT_EXT=${JOT_EXT:-txt}
 
 # Drop trailing /
@@ -168,11 +168,11 @@ edit() {
 }
 
 list() {
-  today_date=$(date +"$JOT_DATE_SHOW_FMT")
+  today_date=$(date +"$JOT_DATE_FMT")
 
   for file in "$JOT_HOME"/*.$JOT_EXT; do
     file_date=$(basename "$file" .$JOT_EXT)
-    date=$(date -d "$file_date" +"$JOT_DATE_SHOW_FMT" | tr -d '\n')
+    date=$(date -d "$file_date" +"$JOT_DATE_FMT" | tr -d '\n')
     lines=$(wc -l "$file" | cut -d ' ' -f 1)
 
     if [[ "$date" == "$today_date" ]]; then
