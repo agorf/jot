@@ -54,9 +54,11 @@ Any other command will be executed and passed any notes after --
 
 For example:
 
-  jot less -N -- yd
+  jot rm -v -- 2020-04-28
 
-  jot cat -- td tm
+  jot cat -- yd td
+
+  jot less -- tm
 
   jot ls
 EOF
