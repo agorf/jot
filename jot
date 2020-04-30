@@ -72,7 +72,7 @@ file_from_date() {
 
 usage() {
   cat <<-EOF
-Usage: jot [command] [date]
+Usage: jot [<command> [<date>...]]
 
 command:
 
