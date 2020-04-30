@@ -98,7 +98,7 @@ Lines starting with `#` are considered comments are are not copied. This can be 
 
 Hook scripts: `$JOT_HOOKS/pre-list`, `$JOT_HOOKS/post-list`
 
-List all not files in ascending date order (most recent, last)
+List all note files in ascending date order (most recent, last)
 
 For each file, the following is displayed:
 
