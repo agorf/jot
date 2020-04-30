@@ -113,6 +113,8 @@ Print usage help text.
 
 ### Everything else
 
+Hook scripts: `$JOT_HOOKS/pre-execute`, `$JOT_HOOKS/post-execute`
+
 TODO
 
 ## Command hooks
