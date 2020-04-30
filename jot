@@ -106,7 +106,7 @@ For example:
 EOF
 }
 
-call() {
+execute() {
   local seen_separator=false
   local cmd=''
   local files=()
@@ -204,7 +204,7 @@ case $1 in
     ;;
   *)
     mkdir_home
-    call "$@"
+    execute "$@"
     exit
     ;;
 esac
