@@ -63,9 +63,11 @@ Any other command will be executed and passed any notes after --
 
 For example:
 
-  jot less -N -- yd td
+  jot less -N -- yd
 
-  jot cat
+  jot cat -- td tm
+
+  jot ls
 EOF
 }
 
@@ -151,12 +153,12 @@ case $1 in
     view "$date"
     exit
     ;;
-  c|copy|cp)
+  c|copy)
     date="$(parse_date $2)"
     copy "$date"
     exit
     ;;
-  l|list|ls)
+  l|list)
     list
     exit
     ;;
