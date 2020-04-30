@@ -38,10 +38,10 @@ Usage: jot [command] [date]
 
 command:
 
-  e[dit]        edit notes for one or more days (default)
-  c[opy]        copy notes for a day
-  l[ist]        list notes
-  help          print this text
+  e[dit]  edit notes for one or more days (default)
+  c[opy]  copy notes for a day
+  l[ist]  list notes
+  help    print this text
 
 date:
 
