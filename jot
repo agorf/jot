@@ -183,8 +183,8 @@ list() {
 
 case $1 in
   e|edit|'')
-    shift
     mkdir_home
+    shift
     edit "$@"
     exit
     ;;
