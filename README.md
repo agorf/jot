@@ -115,7 +115,7 @@ TODO
 
 ### `JOT_HOME`
 
-Default: `.`
+Default: `$HOME/jot`
 
 Where note files are stored.
 

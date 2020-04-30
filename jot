@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-JOT_HOME=${JOT_HOME:-.}
+JOT_HOME=${JOT_HOME:-$HOME/jot/}
 JOT_EDITOR=${JOT_EDITOR:-$EDITOR}
 JOT_COPY=${JOT_COPY:-xclip}
 JOT_DATE_FILE_FMT='%Y-%m-%d'
