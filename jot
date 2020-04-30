@@ -10,6 +10,34 @@ JOT_EXT=${JOT_EXT:-txt}
 # Drop trailing /
 JOT_HOME=${JOT_HOME%/}
 
+prev_workday() {
+  day_of_week=$(date -d today +%w)
+
+  if [[ $day_of_week == "0" ]] ; then
+    days_offset=2
+  elif [[ $day_of_week == "1" ]]; then
+    days_offset=3
+  else
+    days_offset=1
+  fi
+
+  date -d "today - $days_offset days" +"$JOT_DATE_FILE_FMT"
+}
+
+next_workday() {
+  day_of_week=$(date -d today +%w)
+
+  if [[ $day_of_week == "5" ]] ; then
+    days_offset=3
+  elif [[ $day_of_week == "6" ]]; then
+    days_offset=2
+  else
+    days_offset=1
+  fi
+
+  date -d "today + $days_offset days" +"$JOT_DATE_FILE_FMT"
+}
+
 parse_date() {
   case $1 in
     td|today|'')
@@ -20,6 +48,12 @@ parse_date() {
       ;;
     tm|tommorow)
       date -d tomorrow +"$JOT_DATE_FILE_FMT"
+      ;;
+    pwd)
+      prev_workday
+      ;;
+    nwd)
+      next_workday
       ;;
     *)
       date -d "$1" +"$JOT_DATE_FILE_FMT"
@@ -48,6 +82,8 @@ date:
   td or today      perform command for today
   yd or yesterday  perform command for yesterday
   tm or tomorrow   perform command for tomorrow
+  pwd              perform command for previous working day
+  nwd              perform command for next working day
   2020-04-28       perform command for 2020-04-28
   3 days ago       perform command for 3 days ago
   2 days           perform command for 2 days ahead
