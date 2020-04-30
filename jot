@@ -22,7 +22,7 @@ parse_date() {
       date -d tomorrow +"$JOT_DATE_FILE_FMT"
       ;;
     *)
-      echo $1
+      date -d "$1" +"$JOT_DATE_FILE_FMT"
       ;;
   esac
 }
@@ -49,6 +49,8 @@ date:
   yd or yesterday  perform command for yesterday
   tm or tomorrow   perform command for tomorrow
   2020-04-28       perform command for 2020-04-28
+  3 days ago       perform command for 3 days ago
+  2 days           perform command for 2 days ahead
 
 Any other command will be executed and passed any notes after --
 
