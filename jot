@@ -59,6 +59,9 @@ parse_date() {
     nwd)
       next_workday
       ;;
+    all)
+      echo '*'
+      ;;
     *)
       date -d "$1" +"$JOT_DATE_FILE_FMT"
       ;;
@@ -91,6 +94,7 @@ date:
   "3 days ago"
   "2 days"         2 days ahead
   2020-04-28       absolute date
+  all              all dates
 
 Any other command will be executed and passed any notes after --
 
@@ -103,6 +107,8 @@ For example:
   jot less -- tm
 
   jot ls -lh
+
+  jot grep --color Jane -- all
 EOF
 }
 
