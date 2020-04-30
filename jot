@@ -129,17 +129,24 @@ edit() {
 }
 
 list() {
+  today_date=$(date +"$JOT_DATE_SHOW_FMT")
+
   for file in "$JOT_HOME"/*.$JOT_EXT; do
-    date=$(basename $file .$JOT_EXT)
+    file_date=$(basename $file .$JOT_EXT)
+    date=$(date -d "$file_date" +"$JOT_DATE_SHOW_FMT" | tr -d '\n')
     lines=$(wc -l $file | cut -d ' ' -f 1)
-    date -d "$date" +"$JOT_DATE_SHOW_FMT" | tr -d '\n'
+
+
+    if [[ "$date" == "$today_date" ]]; then
+      echo -n '> '
+    else
+      echo -n '  '
+    fi
+
+    echo -n "$date"
     printf ' (%2d) ' $lines
     echo $file
   done
-
-  echo
-  echo -n 'Today is '
-  date +"$JOT_DATE_SHOW_FMT"
 }
 
 case $1 in
