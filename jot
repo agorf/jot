@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 JOT_HOME=${JOT_HOME:-$HOME/jot/}
+JOT_HOOKS=${JOT_HOOKS:-$JOT_HOME/hooks/}
 JOT_EDITOR=${JOT_EDITOR:-$EDITOR}
 JOT_COPY=${JOT_COPY:-xclip}
 JOT_DATE_FILE_FMT='%Y-%m-%d'
@@ -9,6 +10,7 @@ JOT_EXT=${JOT_EXT:-txt}
 
 # Drop trailing /
 JOT_HOME=${JOT_HOME%/}
+JOT_HOOKS=${JOT_HOOKS%/}
 
 mkdir_home() {
   mkdir -p "$JOT_HOME"
@@ -73,6 +75,14 @@ file_from_date() {
   echo "$JOT_HOME/$date.$JOT_EXT"
 }
 
+hook() {
+  local hook_path="$JOT_HOOKS/$1"
+
+  if [[ -x "$hook_path" ]]; then
+    sh -c "$hook_path"
+  fi
+}
+
 usage() {
   cat <<-EOF
 Usage: jot [<command> [<date>...]]
@@ -113,6 +123,8 @@ EOF
 }
 
 execute() {
+  hook 'pre-execute'
+
   local seen_separator=false
   local cmd=''
   local files=()
@@ -137,19 +149,28 @@ execute() {
   fi
 
   sh -c "$cmd $files_str"
+
+  [[ $? -eq 0 ]] && hook 'post-execute'
 }
 
 copy() {
+  hook 'pre-copy'
+
   local file=$(file_from_date "$1")
+  local lines=$(grep -v '^#' "$file" | wc -l)
 
   grep -v '^#' "$file" | $JOT_COPY
 
-  local lines=$(grep -v '^#' "$file" | wc -l)
+  if [[ $? -eq 0 ]]; then
+    echo "Copied $lines line(s) to clipboard"
 
-  [[ $? -eq 0 ]] && echo "Copied $lines line(s) to clipboard"
+    hook 'post-copy'
+  fi
 }
 
 edit() {
+  hook 'pre-edit'
+
   local files=()
 
   if [[ $# -eq 0 ]]; then
@@ -165,9 +186,13 @@ edit() {
   local files_str="${files[@]}"
 
   sh -c "$JOT_EDITOR $JOT_EDITOR_OPTS $files_str"
+
+  [[ $? -eq 0 ]] && hook 'post-edit'
 }
 
 list() {
+  hook 'pre-list'
+
   today_date=$(date +"$JOT_DATE_FMT")
 
   for file in "$JOT_HOME"/*.$JOT_EXT; do
@@ -185,6 +210,8 @@ list() {
     printf ' (%2d) ' $lines
     echo "$file"
   done
+
+  hook 'post-list'
 }
 
 case $1 in

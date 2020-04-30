@@ -80,17 +80,23 @@ Any date not matching the above is passed as the value of the `--date` option to
 
 ### `e` (`edit`)
 
+Hook scripts: `$JOT_HOOKS/pre-edit`, `$JOT_HOOKS/post-edit`
+
 Edit note file with `$JOT_EDITOR` (see `Environment variables` section)
 
 This is the default if you don't provide one.
 
 ### `c` (`copy`)
 
+Hook scripts: `$JOT_HOOKS/pre-copy`, `$JOT_HOOKS/post-copy`
+
 Copy note file contents to the clipboard.
 
 Lines starting with `#` are considered comments are are not copied. This can be used to keep note lines private when copying-pasting.
 
 ### `l` (`list`)
+
+Hook scripts: `$JOT_HOOKS/pre-list`, `$JOT_HOOKS/post-list`
 
 List all not files in ascending date order (most recent, last)
 
@@ -109,6 +115,20 @@ Print usage help text.
 
 TODO
 
+## Command hooks
+
+All commands support "pre" and "post" hooks, i.e. arbitrary scripts that are executed before and/or after each **jot** command (see _Commands_ section)
+
+One possible use of hooks is to automatically add changes to a [Git][] repository and push them to a remote (e.g. for backup and synchronization)
+
+[Git]: https://git-scm.com/
+
+Another idea is to post a message to a remote service, e.g. [Slack][].
+
+[Slack]: https://slack.com/
+
+Please note that **hook scripts must be executable** (`chmod +x`) in order to work.
+
 ## Environment variables
 
 **jot** can be configured through the following environment variables:
@@ -118,6 +138,12 @@ TODO
 Default: `$HOME/jot`
 
 Where note files are stored.
+
+### `JOT_HOOKS`
+
+Default: `$JOT_HOME/hooks`
+
+Where hook scripts are stored (see `Command hooks` section)
 
 ### `JOT_EDITOR`
 
