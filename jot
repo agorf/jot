@@ -6,7 +6,7 @@ JOT_HOME="${JOT_HOME:-.}"
 JOT_EDITOR=${JOT_EDITOR:-$EDITOR}
 JOT_COPY=${JOT_COPY:-xclip}
 JOT_DATE_FILE_FMT="${JOT_DATE_FILE_FMT:-%Y-%m-%d}"
-JOT_DATE_FRIENDLY_FMT="${JOT_DATE_FRIENDLY_FMT:-%a, %d %b %Y}"
+JOT_DATE_SHOW_FMT="${JOT_DATE_SHOW_FMT:-%a, %d %b %Y}"
 JOT_EXT=${JOT_EXT:-txt}
 
 # Drop trailing /
@@ -132,14 +132,14 @@ list() {
   for file in "$JOT_HOME"/*.$JOT_EXT; do
     date=$(basename $file .$JOT_EXT)
     lines=$(wc -l $file | cut -d ' ' -f 1)
-    date -d "$date" +"$JOT_DATE_FRIENDLY_FMT" | tr -d '\n'
+    date -d "$date" +"$JOT_DATE_SHOW_FMT" | tr -d '\n'
     printf ' (%2d) ' $lines
     echo $file
   done
 
   echo
   echo -n 'Today is '
-  date +"$JOT_DATE_FRIENDLY_FMT"
+  date +"$JOT_DATE_SHOW_FMT"
 }
 
 case $1 in
