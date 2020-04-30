@@ -13,7 +13,7 @@ JOT_HOME=${JOT_HOME%/}
 prev_workday() {
   day_of_week=$(date -d today +%w)
 
-  if [[ $day_of_week == "0" ]] ; then
+  if [[ $day_of_week == "0" ]]; then
     days_offset=2
   elif [[ $day_of_week == "1" ]]; then
     days_offset=3
@@ -27,7 +27,7 @@ prev_workday() {
 next_workday() {
   day_of_week=$(date -d today +%w)
 
-  if [[ $day_of_week == "5" ]] ; then
+  if [[ $day_of_week == "5" ]]; then
     days_offset=3
   elif [[ $day_of_week == "6" ]]; then
     days_offset=2
