@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-[[ -f $JOT_HOME/.env ]] && source $JOT_HOME/.env
-
 JOT_HOME="${JOT_HOME:-.}"
 JOT_EDITOR=${JOT_EDITOR:-$EDITOR}
 JOT_COPY=${JOT_COPY:-xclip}
