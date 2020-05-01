@@ -38,6 +38,9 @@ VERSION=0.2.0
 JOT_HOME=${JOT_HOME%/}
 JOT_HOOKS=${JOT_HOOKS%/}
 
+# Make variables available to hooks
+export JOT_HOME
+
 mkdir_home() {
   mkdir -p "$JOT_HOME"
 }
