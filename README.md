@@ -20,6 +20,8 @@ It integrates seamlessly with your text editor and terminal and supports the min
 [LOC]: https://en.wikipedia.org/wiki/Source_lines_of_code
 [source]: https://raw.githubusercontent.com/agorf/jot/master/jot
 
+You can see some [usage examples](#usage-examples).
+
 ## Installation
 
 ```shell
@@ -243,7 +245,101 @@ The file extension used for note files.
 
 ## Usage examples
 
-TODO
+Edit today's notes:
+
+```shell
+jot edit today
+```
+
+`edit` is aliased as `e` and `today` as `td`, so the following is equivalent:
+
+```shell
+jot e td
+```
+
+Since `edit` and `today` are the defaults, you can simply execute `jot` instead:
+
+```shell
+jot
+```
+
+Edit yesterday's (`yd` or `yesterday`) and today's notes:
+
+```shell
+jot e yd td
+```
+
+Copy today's notes:
+
+```shell
+jot copy today
+```
+
+With aliases:
+
+```shell
+jot c td
+```
+
+Since `today` is the default:
+
+```shell
+jot c
+```
+
+List all notes:
+
+```shell
+jot list
+```
+
+With aliases:
+
+```shell
+jot l
+```
+
+Remove tomorrow's note, asking for confirmation:
+
+```shell
+jot rm -iv -- tm
+```
+
+Open today's notes with a pager program:
+
+```shell
+jot less -- td
+```
+
+Since today is the default:
+
+```shell
+jot less
+```
+
+Show file information for today's notes:
+
+```shell
+jot ls -lh
+```
+
+Concatenate yesterday's and today's notes:
+
+```shell
+jot cat -- yd td
+```
+
+Search all notes for `Jane`, colorizing matches:
+
+```shell
+jot grep --color Jane -- all
+```
+
+Display lines for all notes:
+
+```shell
+jot wc -l -- all
+```
 
 ## Credits
 
