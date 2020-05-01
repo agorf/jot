@@ -9,11 +9,11 @@ It integrates seamlessly with your text editor and terminal and supports the min
 ## Design goals
 
 - [Small size][source] (~200 [LOC][]: `grep -v '^#' jot | grep -v '^$' | wc -l`)
-- [Install](#installation) with a single command
+- Easy [installation](#installation)
 - Sane defaults
 - [Notes](#notes) as plain text files
 - Use from a terminal
-- Small (3) number of [commands](#commands)
+- Few (3) [commands](#commands)
 - Minimal keystrokes
 - Use a [text editor](#jot_editor) to edit note files
 - Combine with other programs with [custom commands](#custom-commands)
