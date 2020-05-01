@@ -115,7 +115,17 @@ Print usage help text.
 
 Hook scripts: `$JOT_HOOKS/pre-execute`, `$JOT_HOOKS/post-execute`
 
-TODO
+If the command is not one of the above, **jot** will execute it, passing to it any dates after `--` as arguments mapped to note files.
+
+This makes it possible to call arbitrary commands/programs with note files, resulting in endless possibilities!
+
+For example, to delete yesterday's and tomorrow's note files, simply issue:
+
+```shell
+jot rm -vi -- yd tm
+```
+
+See [Usage examples](#usage-examples) for more.
 
 ## Command hooks
 
