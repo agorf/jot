@@ -110,6 +110,7 @@ hook() {
 usage() {
   cat <<-EOF
 Usage: jot [<command> [<date>...]]
+       jot [<external_command> -- [<date>...]]
 
 command:
 
