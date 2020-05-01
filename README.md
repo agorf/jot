@@ -10,7 +10,7 @@ It integrates seamlessly with your text editor and terminal and supports the min
 
 - [Small size][source] (~200 [LOC][]: `grep -v '^#' jot | grep -v '^$' | wc -l`)
 - [Install](#installation) with a single command
-- [Sane defaults](#environment-variables)
+- [Sane defaults](#commands)
 - [Notes](#notes) as plain text files
 - Use from a terminal
 - Minimal keystrokes
