@@ -14,7 +14,7 @@ Notes are plain text files:
 - A `$JOT_EXT` extension
 - Kept under `$JOT_HOME`
 
-See _Environment variables_ section for more.
+See [Environment variables](#environment-variables) for more.
 
 ## Dates
 
@@ -56,7 +56,7 @@ Stands for "**n**ext **w**orking **d**ay". It returns next Monday's date when ra
 
 Targets all dates.
 
-This makes it possible to execute custom commands targeting all note files (see `Usage examples` section)
+This makes it possible to execute custom commands targeting all note files (see [Usage examples](#usage-examples))
 
 ### Absolute
 
@@ -82,7 +82,7 @@ Any date not matching the above is passed as the value of the `--date` option to
 
 Hook scripts: `$JOT_HOOKS/pre-edit`, `$JOT_HOOKS/post-edit`
 
-Edit note file with `$JOT_EDITOR` (see `Environment variables` section)
+Edit note file with `$JOT_EDITOR` (see [Environment variables](#environment-variables))
 
 This is the default if you don't provide one.
 
@@ -119,7 +119,7 @@ TODO
 
 ## Command hooks
 
-All commands support "pre" and "post" hooks, i.e. arbitrary scripts that are executed before and/or after each **jot** command (see _Commands_ section)
+All commands support "pre" and "post" hooks, i.e. arbitrary scripts that are executed before and/or after each **jot** command (see [Commands](#commands))
 
 One possible use of hooks is to automatically add changes to a [Git][] repository and push them to a remote (e.g. for backup and synchronization)
 
@@ -145,7 +145,7 @@ Where note files are stored.
 
 Default: `$JOT_HOME/hooks`
 
-Where hook scripts are stored (see `Command hooks` section)
+Where hook scripts are stored (see [Command hooks](#command-hooks))
 
 ### `JOT_EDITOR`
 
@@ -190,7 +190,7 @@ Default: `%a, %d %b %Y`
 
 Example: Wed, 15 Apr 2020
 
-How note file friendly dates are displayed with the `list` command (see `Commands` section)
+How note file friendly dates are displayed with the `list` command (see [Commands](#commands))
 
 ### `JOT_EXT`
 
