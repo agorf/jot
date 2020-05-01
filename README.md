@@ -92,7 +92,7 @@ Hook scripts: `$JOT_HOOKS/pre-copy`, `$JOT_HOOKS/post-copy`
 
 Copy note file contents to the clipboard.
 
-Lines starting with `#` are considered comments are are not copied. This can be used to keep note lines private when copying-pasting.
+Lines starting with `#` are considered comments and are not copied. This can be used to keep note lines private when copying-pasting.
 
 ### `l` (`list`)
 
