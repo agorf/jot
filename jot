@@ -43,7 +43,7 @@ mkdir_home() {
 }
 
 prev_workday() {
-  day_of_week=$(date -d today +%w)
+  day_of_week=$(date +%w)
 
   if [[ $day_of_week == "0" ]]; then
     days_offset=2
@@ -57,7 +57,7 @@ prev_workday() {
 }
 
 next_workday() {
-  day_of_week=$(date -d today +%w)
+  day_of_week=$(date +%w)
 
   if [[ $day_of_week == "5" ]]; then
     days_offset=3
