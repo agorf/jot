@@ -90,6 +90,8 @@ parse_date() {
     all)
       echo '*'
       ;;
+    dir)
+      ;;
     *)
       date -d "$1" +"$DATE_FILE_FMT"
       ;;
@@ -98,7 +100,8 @@ parse_date() {
 
 file_from_date() {
   date=$(parse_date "$1")
-  echo "$JOT_HOME/$date.$JOT_EXT"
+
+  [[ -n "$date" ]] && echo "$JOT_HOME/$date.$JOT_EXT"
 }
 
 hook() {
@@ -131,6 +134,7 @@ date:
   "2 days"         2 days ahead
   2020-04-28       absolute date
   all              all dates
+  dir              target \$JOT_HOME
 
 Any other command will be executed and passed any notes after --
 
@@ -145,6 +149,8 @@ For example:
   jot ls -lh
 
   jot grep --color Jane -- all
+
+  jot git status -- dir
 EOF
 }
 
@@ -152,6 +158,7 @@ execute() {
   hook 'pre-execute'
 
   local seen_separator=false
+  local seen_dir=false
   local cmd=''
   local files=()
 
@@ -163,6 +170,8 @@ execute() {
         cmd="$cmd$arg "
       fi
     else
+      [[ "$arg" == 'dir' ]] && seen_dir=true
+
       local file=$(file_from_date "$arg")
       files+=("$file")
     fi
@@ -172,6 +181,10 @@ execute() {
 
   if [[ -z "$files_str" ]]; then
     files_str=$(file_from_date td)
+  fi
+
+  if [[ "$seen_dir" == "true" ]]; then
+    files_str=''
   fi
 
   sh -c "cd $JOT_HOME && $cmd $files_str"

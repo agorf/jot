@@ -97,6 +97,28 @@ Targets all dates.
 
 This makes it possible to execute custom commands targeting all note files (see [Usage examples](#usage-examples))
 
+### `dir`
+
+This makes it possible to issue commands against the `$JOT_HOME` directory and not any note files.
+
+For example, the following lists all `$JOT_HOME` directory contents:
+
+```shell
+jot ls -l -- dir
+```
+
+Contrast this with the following which lists all note files:
+
+```shell
+jot ls -l -- all
+```
+
+And this which lists only today's note file:
+
+```shell
+jot ls -l
+```
+
 ### Absolute dates
 
 Of the form `YYYY-MM-DD`
