@@ -209,6 +209,12 @@ I was inspired to start working on **jot** after [iridakos][] wrote [stup][], a 
 [iridakos]: https://iridakos.com/
 [stup]: https://github.com/iridakos/stup
 
+## License
+
+**jot** is licensed under the terms of the [MIT license][].
+
+[MIT license]: https://github.com/agorf/jot/blob/master/LICENSE.txt
+
 ## Author
 
 Angelos Orfanakos, <https://angelos.dev>
