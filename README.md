@@ -58,13 +58,13 @@ Targets all dates.
 
 This makes it possible to execute custom commands targeting all note files (see [Usage examples](#usage-examples))
 
-### Absolute
+### Absolute dates
 
 Of the form `YYYY-MM-DD`
 
 Example: `2020-04-15` for the 15th of April, 2020
 
-### Relative
+### Relative dates
 
 Example: `"3 days ago"`
 
@@ -72,7 +72,7 @@ Example: `"1 day"` (ahead)
 
 These should be quoted since they contain spaces.
 
-### Everything else
+### Custom dates
 
 Any date not matching the above is passed as the value of the `--date` option to the system's `date` command (`man 1 date`). That's actually how relative dates work.
 
@@ -111,7 +111,7 @@ For each file, the following is displayed:
 
 Print usage help text.
 
-### Everything else
+### Custom commands
 
 Hook scripts: `$JOT_HOOKS/pre-execute`, `$JOT_HOOKS/post-execute`
 
