@@ -111,6 +111,10 @@ For each file, the following is displayed:
 
 Print usage help text.
 
+### `version`
+
+Show **jot** version.
+
 ### Custom commands
 
 Hook scripts: `$JOT_HOOKS/pre-execute`, `$JOT_HOOKS/post-execute`

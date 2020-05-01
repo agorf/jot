@@ -8,6 +8,7 @@ JOT_DATE_FMT=${JOT_DATE_FMT:-%a, %d %b %Y}
 JOT_EXT=${JOT_EXT:-txt}
 
 DATE_FILE_FMT='%Y-%m-%d'
+VERSION=0.1.0
 
 # Drop trailing /
 JOT_HOME=${JOT_HOME%/}
@@ -228,6 +229,10 @@ case $1 in
   l|list)
     mkdir_home
     list
+    exit
+    ;;
+  version)
+    echo $VERSION
     exit
     ;;
   help|-h|--help)
