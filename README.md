@@ -13,6 +13,7 @@ It integrates seamlessly with your text editor and terminal and supports the min
 - [Sane defaults](#commands)
 - [Notes](#notes) as plain text files
 - Use from a terminal
+- Small number of [commands](#commands) (3)
 - Minimal keystrokes
 - Use a [text editor](#jot_editor) to edit note files
 - Combine with other programs with [custom commands](#custom-commands)
