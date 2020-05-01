@@ -38,9 +38,6 @@ VERSION=0.3.0
 JOT_HOME=${JOT_HOME%/}
 JOT_HOOKS=${JOT_HOOKS%/}
 
-# Make variables available to hooks
-export JOT_HOME
-
 mkdir_home() {
   mkdir -p "$JOT_HOME"
 }
@@ -107,7 +104,7 @@ file_from_date() {
 hook() {
   local hook_path="$JOT_HOOKS/$1"
 
-  [[ -x "$hook_path" ]] && sh -c "$hook_path"
+  [[ -x "$hook_path" ]] && sh -c "cd $JOT_HOME && $hook_path"
 }
 
 usage() {
@@ -177,7 +174,7 @@ execute() {
     files_str=$(file_from_date td)
   fi
 
-  sh -c "$cmd $files_str"
+  sh -c "cd $JOT_HOME && $cmd $files_str"
 
   [[ $? -eq 0 ]] && hook 'post-execute'
 }

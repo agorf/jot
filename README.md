@@ -181,8 +181,6 @@ One possible use of hooks is to automatically add changes to a [Git][] repositor
 
 # Place this under $JOT_HOOKS/post-edit and make it executable with chmod +x
 
-cd "$JOT_HOME"
-
 [[ -z "$(git status -s)" ]] && exit
 
 git add --all
