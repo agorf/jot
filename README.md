@@ -11,8 +11,8 @@ It integrates seamlessly with your text editor and terminal and supports the min
 - [Small size][source] (~250 [LOC][])
 - [Install](#installation) with a single command
 - [Sane defaults](#environment-variables)
-- Use from a terminal
 - [Notes](#notes) as plain text files
+- Use from a terminal
 - Use a [text editor](#jot_editor) to edit note files
 - Combine with other programs with [custom commands](#custom-commands)
 - Extend with [command hooks](#command-hooks)
