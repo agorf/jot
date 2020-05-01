@@ -341,7 +341,7 @@ Search all notes for `Jane`, colorizing matches:
 jot grep --color Jane -- all
 ```
 
-Display lines for all notes:
+Display number of lines for all notes:
 
 ```shell
 jot wc -l -- all
