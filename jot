@@ -57,10 +57,10 @@ parse_date() {
     tm|tommorow)
       date -d tomorrow +"$DATE_FILE_FMT"
       ;;
-    pwd)
+    prev|pwd)
       prev_workday
       ;;
-    nwd)
+    next|nwd)
       next_workday
       ;;
     all)
@@ -99,8 +99,8 @@ date:
   td or today
   yd or yesterday
   tm or tomorrow
-  pwd              previous working day
-  nwd              next working day
+  prev or pwd      previous working day
+  next or nwd      next working day
   "3 days ago"
   "2 days"         2 days ahead
   2020-04-28       absolute date

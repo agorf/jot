@@ -73,11 +73,11 @@ Self-explanatory.
 
 Self-explanatory.
 
-### `pwd`
+### `prev` (`pwd`)
 
 Stands for "**p**revious **w**orking **d**ay". It returns last Friday's date when ran on Saturday, Sunday or Monday.
 
-### `nwd`
+### `next` (`nwd`)
 
 Stands for "**n**ext **w**orking **d**ay". It returns next Monday's date when ran on Friday, Saturday or Sunday.
 
