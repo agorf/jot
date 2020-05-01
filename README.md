@@ -413,9 +413,9 @@ I was inspired to start working on jot from [iridakos][] who wrote [stup][].
 
 ## License
 
-jot is licensed under the terms of the [MIT license][].
+[The MIT License][]
 
-[MIT license]: https://github.com/agorf/jot/blob/master/LICENSE.txt
+[The MIT License]: https://github.com/agorf/jot/blob/master/LICENSE.txt
 
 ## Author
 
