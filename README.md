@@ -37,6 +37,12 @@ If [wget][] is not available in your system, you can use [curl][]:
 curl -sS 'https://raw.githubusercontent.com/agorf/jot/master/jot' | sudo tee /usr/local/bin/jot >/dev/null
 ```
 
+Finally, make jot executable:
+
+```shell
+sudo chmod +x /usr/local/bin/jot
+```
+
 ## Notes
 
 Notes are plain text files:
