@@ -4,9 +4,10 @@ JOT_HOME=${JOT_HOME:-$HOME/jot/}
 JOT_HOOKS=${JOT_HOOKS:-$JOT_HOME/hooks/}
 JOT_EDITOR=${JOT_EDITOR:-$EDITOR}
 JOT_COPY=${JOT_COPY:-xclip}
-JOT_DATE_FILE_FMT='%Y-%m-%d'
 JOT_DATE_FMT=${JOT_DATE_FMT:-%a, %d %b %Y}
 JOT_EXT=${JOT_EXT:-txt}
+
+DATE_FILE_FMT='%Y-%m-%d'
 
 # Drop trailing /
 JOT_HOME=${JOT_HOME%/}
@@ -27,7 +28,7 @@ prev_workday() {
     days_offset=1
   fi
 
-  date -d "today - $days_offset days" +"$JOT_DATE_FILE_FMT"
+  date -d "today - $days_offset days" +"$DATE_FILE_FMT"
 }
 
 next_workday() {
@@ -41,19 +42,19 @@ next_workday() {
     days_offset=1
   fi
 
-  date -d "today + $days_offset days" +"$JOT_DATE_FILE_FMT"
+  date -d "today + $days_offset days" +"$DATE_FILE_FMT"
 }
 
 parse_date() {
   case $1 in
     td|today|'')
-      date +"$JOT_DATE_FILE_FMT"
+      date +"$DATE_FILE_FMT"
       ;;
     yd|yesterday)
-      date -d yesterday +"$JOT_DATE_FILE_FMT"
+      date -d yesterday +"$DATE_FILE_FMT"
       ;;
     tm|tommorow)
-      date -d tomorrow +"$JOT_DATE_FILE_FMT"
+      date -d tomorrow +"$DATE_FILE_FMT"
       ;;
     pwd)
       prev_workday
@@ -65,7 +66,7 @@ parse_date() {
       echo '*'
       ;;
     *)
-      date -d "$1" +"$JOT_DATE_FILE_FMT"
+      date -d "$1" +"$DATE_FILE_FMT"
       ;;
   esac
 }
