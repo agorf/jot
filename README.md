@@ -214,7 +214,7 @@ TODO
 
 ## Credits
 
-I was inspired to start working on **jot** after [iridakos][] wrote [stup][], a program for keeping notes for daily stand-ups.
+I got the idea to start working on **jot** from [iridakos][] who wrote [stup][], a program for keeping notes for daily stand-ups.
 
 [iridakos]: https://iridakos.com/
 [stup]: https://github.com/iridakos/stup
