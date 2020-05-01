@@ -174,7 +174,21 @@ See [Usage examples](#usage-examples) for more.
 
 All commands support "pre" and "post" hooks, i.e. arbitrary scripts that are executed before and/or after each jot command (see [Commands](#commands))
 
-One possible use of hooks is to automatically add changes to a [Git][] repository and push them to a remote (e.g. for backup and synchronization)
+One possible use of hooks is to automatically add changes to a [Git][] repository and push them to a remote (e.g. for backup and synchronization):
+
+```shell
+#!/usr/bin/env bash
+
+# Place this under $JOT_HOOKS/post-edit and make it executable with chmod +x
+
+cd $JOT_HOME
+
+[[ -z $(git status -s) ]] && exit
+
+git add --all
+git commit -m "$(date)"
+git push
+```
 
 [Git]: https://git-scm.com/
 
