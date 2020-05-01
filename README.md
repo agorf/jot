@@ -320,6 +320,12 @@ Edit yesterday's (`yd` or `yesterday`) and today's notes:
 jot e yd td
 ```
 
+Edit all notes:
+
+```shell
+jot e all
+```
+
 Copy today's notes to the clipboard:
 
 ```shell
