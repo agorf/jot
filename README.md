@@ -383,6 +383,12 @@ Display number of lines for all notes:
 jot wc -l -- all
 ```
 
+Display [Git][] directory status in `$JOT_HOME`:
+
+```shell
+jot git status -- dir
+```
+
 ## Acknowledgements
 
 I got the idea to start working on jot from [iridakos][] who wrote [stup][].
