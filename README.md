@@ -6,6 +6,21 @@
 
 It integrates seamlessly with your text editor and terminal and supports the minimum number of features, getting out of your way.
 
+## Installation
+
+```shell
+wget -nvO - https://raw.githubusercontent.com/agorf/jot/master/jot | sudo tee /usr/local/bin/jot >/dev/null
+```
+
+If [wget][] is not available in your system, you can use [curl][]:
+
+[wget]: https://www.gnu.org/software/wget/
+[curl]: https://curl.haxx.se/
+
+```shell
+curl -sS https://raw.githubusercontent.com/agorf/jot/master/jot | sudo tee /usr/local/bin/jot >/dev/null
+```
+
 ## Notes
 
 Notes are plain text files:
