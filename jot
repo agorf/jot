@@ -106,8 +106,19 @@ file_from_date() {
 
 hook() {
   local hook_path="$JOT_HOOKS/$1"
+  local prefix=$(echo $1 | cut -d '-' -f 1)
+  local action=$(echo $1 | cut -d '-' -f 2)
+  local all_hook_path="$JOT_HOOKS/$prefix-all"
+
+  if [[ $prefix == "pre" ]] && [[ -x "$all_hook_path" ]]; then
+    sh -c "cd $JOT_HOME && $all_hook_path $action"
+  fi
 
   [[ -x "$hook_path" ]] && sh -c "cd $JOT_HOME && $hook_path"
+
+  if [[ $prefix == "post" ]] && [[ -x "$all_hook_path" ]]; then
+    sh -c "cd $JOT_HOME && $all_hook_path $action"
+  fi
 }
 
 usage() {

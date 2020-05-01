@@ -194,9 +194,18 @@ See [Usage examples](#usage-examples) for more.
 
 ## Command hooks
 
-All commands support "pre" and "post" hooks, i.e. arbitrary scripts that are executed before and/or after each jot command (see [Commands](#commands))
+All [commands](#commands) support "pre" and "post" hooks: arbitrary scripts that are executed before and/or after each command.
 
-One possible use of hooks is to automatically add changes to a [Git][] repository and push them to a remote (e.g. for backup and synchronization):
+Command-agnostic hooks are also supported at `$JOT_HOOKS/pre-all` and `$JOT_HOOKS/post-all`. These run before and/or after any command and have the command name passed to them as `$1`.
+
+The hook execution order is:
+
+- `pre-all`
+- `pre-edit` (or any other command)
+- `post-edit` (or any other command)
+- `post-all`
+
+One possible use of hooks is the following example that automatically adds changes to a [Git][] repository and pushes them to the remote. This way you can have your notes backed up and synchronized:
 
 ```shell
 #!/usr/bin/env bash
