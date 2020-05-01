@@ -16,8 +16,8 @@ It integrates seamlessly with your text editor and terminal and supports the min
 - Minimal keystrokes
 - Use a [text editor](#jot_editor) to edit note files
 - Few (3) [commands](#commands)
-- Combine with other programs with [custom commands](#custom-commands)
-- Extend with [command hooks](#command-hooks)
+- Combined with other programs with [custom commands](#custom-commands)
+- Extensible with [command hooks](#command-hooks)
 
 [LOC]: https://en.wikipedia.org/wiki/Source_lines_of_code
 [source]: https://raw.githubusercontent.com/agorf/jot/master/jot
