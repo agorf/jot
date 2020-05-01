@@ -406,7 +406,7 @@ jot git status -- dir
 
 ## Acknowledgements
 
-I got the idea to start working on jot from [iridakos][] who wrote [stup][].
+I was inspired to start working on jot from [iridakos][] who wrote [stup][].
 
 [iridakos]: https://iridakos.com/
 [stup]: https://github.com/iridakos/stup
