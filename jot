@@ -113,10 +113,11 @@ Usage: jot [<command> [<date>...]]
 
 command:
 
-  e[dit]  edit notes for one or more dates (default)
-  c[opy]  copy notes for a date
-  l[ist]  list notes
-  help    print this text
+  e[dit]   edit notes for one or more dates (default)
+  c[opy]   copy notes for a date
+  l[ist]   list notes
+  help     print this text
+  version  print the version
 
 date:
 
