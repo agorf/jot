@@ -78,9 +78,7 @@ file_from_date() {
 hook() {
   local hook_path="$JOT_HOOKS/$1"
 
-  if [[ -x "$hook_path" ]]; then
-    sh -c "$hook_path"
-  fi
+  [[ -x "$hook_path" ]] && sh -c "$hook_path"
 }
 
 usage() {
