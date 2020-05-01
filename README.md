@@ -320,7 +320,7 @@ Edit yesterday's (`yd` or `yesterday`) and today's notes:
 jot e yd td
 ```
 
-Copy today's notes:
+Copy today's notes to the clipboard:
 
 ```shell
 jot copy today
@@ -350,13 +350,13 @@ Shortened:
 jot l
 ```
 
-Remove tomorrow's note, asking for confirmation:
+Remove tomorrow's notes, asking for confirmation:
 
 ```shell
 jot rm -iv -- tm
 ```
 
-Open today's notes with a pager program:
+Open today's notes with `less` pager:
 
 ```shell
 jot less -- td
