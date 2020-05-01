@@ -25,7 +25,7 @@ You can see some [usage examples](#usage-examples).
 ## Installation
 
 ```shell
-wget -nvO - https://raw.githubusercontent.com/agorf/jot/master/jot | sudo tee /usr/local/bin/jot >/dev/null
+wget -nv -O - 'https://raw.githubusercontent.com/agorf/jot/master/jot' | sudo tee /usr/local/bin/jot >/dev/null
 ```
 
 If [wget][] is not available in your system, you can use [curl][]:
@@ -34,7 +34,7 @@ If [wget][] is not available in your system, you can use [curl][]:
 [curl]: https://curl.haxx.se/
 
 ```shell
-curl -sS https://raw.githubusercontent.com/agorf/jot/master/jot | sudo tee /usr/local/bin/jot >/dev/null
+curl -sS 'https://raw.githubusercontent.com/agorf/jot/master/jot' | sudo tee /usr/local/bin/jot >/dev/null
 ```
 
 ## Notes
