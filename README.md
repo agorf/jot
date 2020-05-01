@@ -27,7 +27,7 @@ You can see some [usage examples](#usage-examples).
 ## Installation
 
 ```shell
-wget -nv -O - 'https://raw.githubusercontent.com/agorf/jot/master/jot' | sudo tee /usr/local/bin/jot >/dev/null
+wget -qO - 'https://raw.githubusercontent.com/agorf/jot/master/jot' | sudo tee /usr/local/bin/jot >/dev/null
 ```
 
 If [wget][] is not available in your system, you can use [curl][]:
