@@ -1,6 +1,6 @@
 # jot
 
-**jot** is a minimal, general-purpose, command-line note-taking program written in [Bash][].
+**jot** is a minimal, command-line note-taking program written in [Bash][].
 
 [Bash]: https://en.wikipedia.org/wiki/Bash_(Unix_shell)
 
