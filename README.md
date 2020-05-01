@@ -6,6 +6,20 @@
 
 It integrates seamlessly with your text editor and terminal and supports the minimum number of features, getting out of your way.
 
+## Design goals
+
+- [Small size][source] (~250 [LOC][])
+- [Install](#installation) with a single command
+- [Sane defaults](#environment-variables)
+- Use from a terminal
+- [Notes](#notes) as plain text files
+- Use a [text editor](#jot_editor) to edit note files
+- Combine with other programs with [custom commands](#custom-commands)
+- Extend with [command hooks](#command-hooks)
+
+[LOC]: https://en.wikipedia.org/wiki/Source_lines_of_code
+[source]: https://raw.githubusercontent.com/agorf/jot/master/jot
+
 ## Installation
 
 ```shell
