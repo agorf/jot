@@ -97,6 +97,24 @@ Targets all dates.
 
 This makes it possible to execute custom commands targeting all note files (see [Usage examples](#usage-examples))
 
+### Absolute dates
+
+Of the form `YYYY-MM-DD`
+
+Example: `2020-04-15` for the 15th of April, 2020
+
+### Relative dates
+
+Example: `"3 days ago"`
+
+Example: `"1 day"` (ahead)
+
+These should be quoted since they contain spaces.
+
+### Custom dates
+
+Any date not matching the above is passed as the value of the `--date` option to the system's `date` command (`man 1 date`). That's actually how relative dates work.
+
 ### `dir`
 
 This makes it possible to issue commands against the `$JOT_HOME` directory and not any note files.
@@ -118,24 +136,6 @@ And this which lists only today's note file:
 ```shell
 jot ls -l
 ```
-
-### Absolute dates
-
-Of the form `YYYY-MM-DD`
-
-Example: `2020-04-15` for the 15th of April, 2020
-
-### Relative dates
-
-Example: `"3 days ago"`
-
-Example: `"1 day"` (ahead)
-
-These should be quoted since they contain spaces.
-
-### Custom dates
-
-Any date not matching the above is passed as the value of the `--date` option to the system's `date` command (`man 1 date`). That's actually how relative dates work.
 
 ## Commands
 
