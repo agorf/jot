@@ -349,7 +349,7 @@ Display number of lines for all notes:
 jot wc -l -- all
 ```
 
-## Credits
+## Acknowledgements
 
 I got the idea to start working on jot from [iridakos][] who wrote [stup][].
 
