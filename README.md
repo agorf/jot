@@ -57,7 +57,7 @@ For example, if:
 
 Then `today` is mapped to `/home/alice/jot/2020-04-15.txt`
 
-The following date formats are supported:
+The following date aliases are supported:
 
 ### `td` (`today`)
 
