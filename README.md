@@ -283,7 +283,7 @@ Copy today's notes:
 jot copy today
 ```
 
-With aliases:
+Shortened:
 
 ```shell
 jot c td
@@ -301,7 +301,7 @@ List all notes:
 jot list
 ```
 
-With aliases:
+Shortened:
 
 ```shell
 jot l
