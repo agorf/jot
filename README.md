@@ -8,7 +8,7 @@ It integrates seamlessly with your text editor and terminal and supports the min
 
 ## Design goals
 
-- [Small size][source] (~250 [LOC][])
+- [Small size][source] (~200 [LOC][]: `grep -v '^#' jot | grep -v '^$' | wc -l`)
 - [Install](#installation) with a single command
 - [Sane defaults](#environment-variables)
 - [Notes](#notes) as plain text files
