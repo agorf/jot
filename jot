@@ -72,13 +72,13 @@ next_workday() {
 
 parse_date() {
   case $1 in
-    td|today|'')
+    td|'')
       date +"$DATE_FILE_FMT"
       ;;
-    yd|yesterday)
+    yd)
       date -d yesterday +"$DATE_FILE_FMT"
       ;;
-    tm|tommorow)
+    tm)
       date -d tomorrow +"$DATE_FILE_FMT"
       ;;
     prev|pwd)
