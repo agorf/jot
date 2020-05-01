@@ -47,7 +47,7 @@ See [Environment variables](#environment-variables) for more.
 
 ## Dates
 
-**jot** commands accept dates and map them to note file names.
+jot commands accept dates and map them to note file names.
 
 For example, if:
 
@@ -142,13 +142,13 @@ Print usage help text.
 
 ### `version`
 
-Show **jot** version.
+Show jot version.
 
 ### Custom commands
 
 Hook scripts: `$JOT_HOOKS/pre-execute`, `$JOT_HOOKS/post-execute`
 
-If the command is not one of the above, **jot** will execute it, passing to it any dates after `--` as arguments mapped to note files.
+If the command is not one of the above, jot will execute it, passing to it any dates after `--` as arguments mapped to note files.
 
 This makes it possible to call arbitrary commands/programs with note files, resulting in endless possibilities!
 
@@ -162,7 +162,7 @@ See [Usage examples](#usage-examples) for more.
 
 ## Command hooks
 
-All commands support "pre" and "post" hooks, i.e. arbitrary scripts that are executed before and/or after each **jot** command (see [Commands](#commands))
+All commands support "pre" and "post" hooks, i.e. arbitrary scripts that are executed before and/or after each jot command (see [Commands](#commands))
 
 One possible use of hooks is to automatically add changes to a [Git][] repository and push them to a remote (e.g. for backup and synchronization)
 
@@ -176,7 +176,7 @@ Please note that **hook scripts must be executable** (`chmod +x`) in order to wo
 
 ## Environment variables
 
-**jot** can be configured through the following environment variables:
+jot can be configured through the following environment variables:
 
 ### `JOT_HOME`
 
@@ -247,14 +247,14 @@ TODO
 
 ## Credits
 
-I got the idea to start working on **jot** from [iridakos][] who wrote [stup][], a program for keeping notes for daily stand-ups.
+I got the idea to start working on jot from [iridakos][] who wrote [stup][], a program for keeping notes for daily stand-ups.
 
 [iridakos]: https://iridakos.com/
 [stup]: https://github.com/iridakos/stup
 
 ## License
 
-**jot** is licensed under the terms of the [MIT license][].
+jot is licensed under the terms of the [MIT license][].
 
 [MIT license]: https://github.com/agorf/jot/blob/master/LICENSE.txt
 
