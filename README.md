@@ -194,22 +194,25 @@ See [Usage examples](#usage-examples) for more.
 
 ## Command hooks
 
-All [commands](#commands) support "pre" and "post" hooks: arbitrary scripts that are executed before and/or after each command.
+All [commands](#commands) support "pre" and "post" hooks: custom scripts that are executed before and/or after each command.
 
-Command-agnostic hooks are also supported at `$JOT_HOOKS/pre-all` and `$JOT_HOOKS/post-all`. These run before and/or after any command and have the command name passed to them as `$1`.
+Please note that **hook scripts must be executable** (`chmod +x`) in order to work.
 
-The hook execution order is:
+Command-agnostic hooks are also supported with `$JOT_HOOKS/pre-all` and `$JOT_HOOKS/post-all`. These run before and/or after any command and have the command name passed to them as `$1`
 
-- `pre-all`
-- `pre-edit` (or any other command)
-- `post-edit` (or any other command)
-- `post-all`
+Thus, the execution order for e.g. the `edit` command is:
 
-One possible use of hooks is the following example that automatically adds changes to a [Git][] repository and pushes them to the remote. This way you can have your notes backed up and synchronized:
+- `pre-all` hook
+- `pre-edit` hook
+- `edit` command
+- `post-edit` hook
+- `post-all` hook
+
+The following `post-edit` hook adds changes to a [Git][] repository and pushes them to the remote, so that note files are backed up and synchronized:
+
+[Git]: https://git-scm.com/
 
 ```shell
-#!/usr/bin/env bash
-
 # Place this under $JOT_HOOKS/post-edit and make it executable with chmod +x
 
 [[ -z "$(git status -s)" ]] && exit
@@ -218,14 +221,6 @@ git add --all
 git commit -m "$(date)"
 git push
 ```
-
-[Git]: https://git-scm.com/
-
-Another idea is to post a message to a remote service, e.g. [Slack][].
-
-[Slack]: https://slack.com/
-
-Please note that **hook scripts must be executable** (`chmod +x`) in order to work.
 
 ## Environment variables
 
