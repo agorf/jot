@@ -27,7 +27,6 @@
 JOT_HOME=${JOT_HOME:-$HOME/jot}
 JOT_HOOKS=${JOT_HOOKS:-$JOT_HOME/hooks}
 JOT_EDITOR=${JOT_EDITOR:-$EDITOR}
-JOT_COPY=${JOT_COPY:-xclip}
 JOT_DATE_FMT=${JOT_DATE_FMT:-%a, %d %b %Y}
 JOT_EXT=${JOT_EXT:-txt}
 
@@ -37,6 +36,17 @@ VERSION=0.5.0
 # Drop trailing /
 JOT_HOME=${JOT_HOME%/}
 JOT_HOOKS=${JOT_HOOKS%/}
+
+if [[ -z "$JOT_COPY" ]]; then
+  for cmd in xclip xsel xcut sselp; do
+    command -v $cmd >/dev/null 2>&1
+
+    if [[ $? -eq 0 ]]; then
+      JOT_COPY=$cmd
+      break
+    fi
+  done
+fi
 
 mkdir_home() {
   mkdir -p "$JOT_HOME"
@@ -204,6 +214,11 @@ execute() {
 }
 
 copy() {
+  if [[ -z "$JOT_COPY" ]]; then
+    echo 'Please set JOT_COPY to an X selection manipulation program'
+    exit 1
+  fi
+
   hook 'pre-copy'
 
   local file=$(file_from_date "$1")

@@ -294,17 +294,16 @@ This ensures each file is opened in a vertical split window and the cursor is pl
 
 ### `JOT_COPY`
 
-Default: [`xclip`][xclip]
-
-[xclip]: https://github.com/astrand/xclip
+Default: (none)
 
 Note file contents will be passed to the standard input of this command to be copied to the clipboard.
 
-Alternatives: [xsel][], [sselp][], [xcut][]
+jot will auto-detect the existence of the following X selection manipulation programs (in this order):
 
-[xsel]: http://www.vergenet.net/~conrad/software/xsel/
-[sselp]: http://tools.suckless.org/x/sselp/
-[xcut]: http://xcut.sourceforge.net/
+- [xclip](https://github.com/astrand/xclip)
+- [xsel](http://www.vergenet.net/~conrad/software/xsel/)
+- [xcut](http://xcut.sourceforge.net/)
+- [sselp](http://tools.suckless.org/x/sselp/)
 
 ### `JOT_DATE_FMT`
 
