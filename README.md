@@ -8,16 +8,12 @@ It integrates seamlessly with your text editor and terminal and supports the min
 
 ## Design goals
 
-- [Small size][source] (~200 [LOC][]: `grep -v '^#' jot | grep -v '^$' | wc -l`)
+- [Small source size][source] (~200 [LOC][]: `grep -v '^#' jot | grep -v '^$' | wc -l`)
 - Easy [installation](#installation)
-- Sane defaults
-- Use from a terminal
-- [Notes](#notes) as plain text files
-- Use a [text editor](#jot_editor) to edit note files
-- Minimal keystrokes
-- Few (3) [commands](#commands)
-- Combined with other programs with [custom commands](#custom-commands)
-- Extensible with [command hooks](#command-hooks)
+- Plain text [note files](#notes) edited with a [text editor](#jot_editor)
+- Few [commands](#commands) with sensible defaults and aliases for less typing
+- Seamless integration with external programs through [custom commands](#custom-commands)
+- Extensibility and automation with custom [command hooks](#command-hooks)
 
 [LOC]: https://en.wikipedia.org/wiki/Source_lines_of_code
 [source]: https://raw.githubusercontent.com/agorf/jot/master/jot
