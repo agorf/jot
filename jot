@@ -81,16 +81,21 @@ next_workday() {
 }
 
 parse_date() {
-  case $1 in
+  local date=$1
+
+  case $date in
     td|'')
-      date +"$DATE_FILE_FMT"
+      date=today
       ;;
     yd)
-      date -d yesterday +"$DATE_FILE_FMT"
+      date=yesterday
       ;;
     tm)
-      date -d tomorrow +"$DATE_FILE_FMT"
+      date=tomorrow
       ;;
+  esac
+
+  case $date in
     prev|pwd)
       prev_workday
       ;;
@@ -103,7 +108,7 @@ parse_date() {
     dir)
       ;;
     *)
-      date -d "$1" +"$DATE_FILE_FMT"
+      date -d "$date" +"$DATE_FILE_FMT"
       ;;
   esac
 }
