@@ -246,14 +246,15 @@ copy() {
 
   hook 'pre-copy'
 
-  local file=$(file_from_date "$1")
+  local date=$(parse_date "$1")
+  local file=$(file_from_date "$date")
   local lines=$(grep -v '^#' "$file" | wc -l)
-  local date=$(date -d "$1" +"$JOT_DATE_FMT")
+  local display_date=$(date -d "$date" +"$JOT_DATE_FMT")
 
   grep -v '^#' "$file" | sed -z '$ s/\n$//' | $JOT_COPY
 
   if [[ $? -eq 0 ]]; then
-    echo "Copied $lines line(s) to clipboard for $date"
+    echo "Copied $lines line(s) to clipboard for $display_date"
 
     hook 'post-copy'
   fi
@@ -326,8 +327,8 @@ case $1 in
     edit "$@"
     ;;
   c|copy)
-    date=$(parse_date "$2")
-    copy "$date"
+    shift
+    copy "$1"
     ;;
   l|list)
     mkdir_home
