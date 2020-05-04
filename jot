@@ -247,13 +247,18 @@ copy() {
   hook 'pre-copy'
 
   local date=$(parse_date "$1")
-  local file=$(file_from_date "$date")
-  local lines=$(grep -v '^#' "$file" | wc -l)
   local display_date=$(date -d "$date" +"$JOT_DATE_FMT")
+  local file=$(file_from_date "$date")
+
+  if [[ ! -f "$file" ]]; then
+    echo "There are no notes for $display_date"
+    exit 1
+  fi
 
   grep -v '^#' "$file" | sed -z '$ s/\n$//' | $JOT_COPY
 
   if [[ $? -eq 0 ]]; then
+    local lines=$(grep -v '^#' "$file" | wc -l)
     echo "Copied $lines line(s) to clipboard for $display_date"
 
     hook 'post-copy'

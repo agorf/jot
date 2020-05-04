@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog][] and this project adheres to
 
 ## [Unreleased][]
 
+### Added
+
+- Add check for missing notes file in copy command
+
 ### Changed
 
 - Improve README
