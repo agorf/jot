@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog][] and this project adheres to
 ### Added
 
 - Add check for missing notes file in copy command
+- Show date of copied notes in copy command
 
 ### Changed
 
