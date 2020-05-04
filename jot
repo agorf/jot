@@ -224,7 +224,7 @@ copy() {
   local file=$(file_from_date "$1")
   local lines=$(grep -v '^#' "$file" | wc -l)
 
-  grep -v '^#' "$file" | $JOT_COPY
+  grep -v '^#' "$file" | sed -z '$ s/\n$//' | $JOT_COPY
 
   if [[ $? -eq 0 ]]; then
     echo "Copied $lines line(s) to clipboard"
