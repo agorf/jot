@@ -232,6 +232,12 @@ Print usage help text.
 
 Show jot version.
 
+### `update`
+
+Update jot to latest version.
+
+Needs `wget` or `curl` to be installed.
+
 ### Custom commands
 
 Hook scripts: `$JOT_HOOKS/pre-execute`, `$JOT_HOOKS/post-execute`

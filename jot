@@ -32,6 +32,7 @@ JOT_EXT=${JOT_EXT:-txt}
 
 DATE_FILE_FMT='%Y-%m-%d'
 VERSION=0.6.0
+SOURCE_URL=https://raw.githubusercontent.com/agorf/jot/master/jot
 
 # Drop trailing /
 JOT_HOME=${JOT_HOME%/}
@@ -163,6 +164,7 @@ command:
   l[ist]   list notes
   help     print this text
   version  print the version
+  update   update jot to latest version
 
 date:
 
@@ -300,6 +302,20 @@ list() {
   hook 'post-list'
 }
 
+update() {
+  echo "Current version: $VERSION"
+
+  if command -v wget >/dev/null 2>&1; then
+    wget -qO - $SOURCE_URL >$0
+  elif command -v curl >/dev/null 2>&1; then
+    curl -s $SOURCE_URL >$0
+  else
+    echo "wget or curl must be installed in order to update"
+  fi
+
+  echo "New version: $(jot version)"
+}
+
 case $1 in
   e|edit|'')
     mkdir_home
@@ -313,6 +329,9 @@ case $1 in
   l|list)
     mkdir_home
     list
+    ;;
+  update)
+    update
     ;;
   version)
     echo $VERSION

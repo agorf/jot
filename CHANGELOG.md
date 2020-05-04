@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog][] and this project adheres to
 
 ### Added
 
+- Add `update` command for updating to the latest version
 - Add this change log
 - Add version badge to README
 
