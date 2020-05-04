@@ -78,7 +78,7 @@ The format is based on [Keep a Changelog][] and this project adheres to
 
 - Initial release
 
-[Unreleased]: https://github.com/olivierlacan/keep-a-changelog/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/agorf/jot/compare/0.6.0...HEAD
 [0.6.0]: https://github.com/agorf/jot/compare/0.5.0...0.6.0
 [0.5.0]: https://github.com/agorf/jot/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/agorf/jot/compare/0.3.0...0.4.0
