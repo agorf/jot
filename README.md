@@ -10,7 +10,7 @@ It integrates seamlessly with your text editor and terminal and supports the min
 
 ## Design goals
 
-- [Small source size][source] (~200 [LOC][]: `grep -v '^#' jot | grep -v '^$' | wc -l`)
+- [Small source size][source] (~250 [LOC][]: `grep -v '^#' jot | grep -v '^$' | wc -l`)
 - Easy [installation](#installation)
 - Plain text [note files](#notes) edited with a [text editor](#jot_editor)
 - Few [commands](#commands) with sensible defaults and aliases for less typing
