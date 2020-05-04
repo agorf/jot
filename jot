@@ -244,11 +244,12 @@ copy() {
 
   local file=$(file_from_date "$1")
   local lines=$(grep -v '^#' "$file" | wc -l)
+  local date=$(date -d "$1" +"$JOT_DATE_FMT")
 
   grep -v '^#' "$file" | sed -z '$ s/\n$//' | $JOT_COPY
 
   if [[ $? -eq 0 ]]; then
-    echo "Copied $lines line(s) to clipboard"
+    echo "Copied $lines line(s) to clipboard for $date"
 
     hook 'post-copy'
   fi
