@@ -1,5 +1,7 @@
 # jot
 
+![](https://img.shields.io/github/v/tag/agorf/jot?label=version&sort=semver)
+
 **jot** is a minimal, command-line note-taking program written in [Bash][].
 
 [Bash]: https://en.wikipedia.org/wiki/Bash_(Unix_shell)

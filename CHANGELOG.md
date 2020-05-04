@@ -13,6 +13,7 @@ The format is based on [Keep a Changelog][] and this project adheres to
 ### Added
 
 - Add this change log
+- Add version badge to README
 
 ### Changed
 
