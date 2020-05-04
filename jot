@@ -143,7 +143,7 @@ hook() {
 usage() {
   cat <<-EOF
 Usage: jot [<command> [<date>...]]
-       jot [<external_command> -- [<date>...]]
+       jot [<program> -- [<date>...]]
 
 command:
 
@@ -177,7 +177,7 @@ For example:
 
   jot less -- tm
 
-  jot ls -lh
+  jot xclip
 
   jot grep --color Jane -- all
 
