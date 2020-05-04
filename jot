@@ -279,7 +279,7 @@ edit() {
 list() {
   hook 'pre-list'
 
-  today_date=$(date +"$JOT_DATE_FMT")
+  local today_date=$(date +"$JOT_DATE_FMT")
 
   for file in "$JOT_HOME"/*.$JOT_EXT; do
     file_date=$(date_from_file "$file")
