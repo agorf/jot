@@ -45,9 +45,8 @@ mkdir_home() {
 prev_day_with_notes() {
   local today_date=$(date +"$DATE_FILE_FMT")
   local file=$(ls -1 "$JOT_HOME"/*.$JOT_EXT | grep -v "$today_date" | tail -n 1)
-  local file_date=$(date_from_file "$file")
 
-  date -d "$file_date" +"$DATE_FILE_FMT"
+  date_from_file "$file"
 }
 
 prev_workday() {
