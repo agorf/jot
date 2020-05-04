@@ -211,6 +211,17 @@ For each file, the following is displayed:
 - Number of lines
 - Path
 
+Example output:
+
+```
+  Fri, 24 Apr 2020 ( 7) /home/agorf/jot/2020-04-24.txt
+  Mon, 27 Apr 2020 ( 3) /home/agorf/jot/2020-04-27.txt
+  Tue, 28 Apr 2020 ( 8) /home/agorf/jot/2020-04-28.txt
+  Wed, 29 Apr 2020 ( 8) /home/agorf/jot/2020-04-29.txt
+  Thu, 30 Apr 2020 ( 8) /home/agorf/jot/2020-04-30.txt
+> Mon, 04 May 2020 ( 8) /home/agorf/jot/2020-05-04.txt
+```
+
 ### `help`
 
 Aliases: `-h`, `--help`
