@@ -83,7 +83,7 @@ Self-explanatory.
 
 Previous working day.
 
-It returns last Friday's date when ran on Saturday, Sunday or Monday.
+It returns previous Friday's date when ran on Saturday, Sunday or Monday.
 
 ### `next` (`nwd`)
 

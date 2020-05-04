@@ -18,6 +18,7 @@ The format is based on [Keep a Changelog][] and this project adheres to
 ### Changed
 
 - Remove last trailing newline character when copying
+- Improve README
 
 ## [0.6.0][] - 2020-05-03
 
