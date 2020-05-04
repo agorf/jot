@@ -305,29 +305,23 @@ case $1 in
     mkdir_home
     shift
     edit "$@"
-    exit
     ;;
   c|copy)
     date=$(parse_date "$2")
     copy "$date"
-    exit
     ;;
   l|list)
     mkdir_home
     list
-    exit
     ;;
   version)
     echo $VERSION
-    exit
     ;;
   help|-h|--help)
     usage
-    exit
     ;;
   *)
     mkdir_home
     execute "$@"
-    exit
     ;;
 esac
