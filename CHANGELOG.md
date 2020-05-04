@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog][] and this project adheres to
 
 ## [Unreleased][]
 
+## [0.7.0][] - 2020-05-04
+
 ### Added
 
 - Add `update` command for updating to the latest version
@@ -86,7 +88,8 @@ The format is based on [Keep a Changelog][] and this project adheres to
 
 - Initial release
 
-[Unreleased]: https://github.com/agorf/jot/compare/0.6.0...HEAD
+[Unreleased]: https://github.com/agorf/jot/compare/0.7.0...HEAD
+[0.7.0]: https://github.com/agorf/jot/compare/0.6.0...0.7.0
 [0.6.0]: https://github.com/agorf/jot/compare/0.5.0...0.6.0
 [0.5.0]: https://github.com/agorf/jot/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/agorf/jot/compare/0.3.0...0.4.0
