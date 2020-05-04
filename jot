@@ -40,9 +40,7 @@ JOT_HOOKS=${JOT_HOOKS%/}
 
 if [[ -z "$JOT_COPY" ]]; then
   for cmd in xclip xsel xcut sselp; do
-    command -v $cmd >/dev/null 2>&1
-
-    if [[ $? -eq 0 ]]; then
+    if command -v $cmd >/dev/null 2>&1; then
       JOT_COPY=$cmd
       break
     fi
