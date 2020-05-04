@@ -65,27 +65,37 @@ Then `today` is mapped to `/home/agorf/jot/2020-04-15.txt`
 
 The following date aliases are supported:
 
-### `td` (`today`)
+### `today`
+
+Alias: `td`
 
 Self-explanatory.
 
 This is the default date if you don't provide one.
 
-### `yd` (`yesterday`)
+### `yesterday`
+
+Alias: `yd`
 
 Self-explanatory.
 
-### `tm` (`tomorrow`)
+### `tomorrow`
+
+Alias: `tm`
 
 Self-explanatory.
 
-### `prev` (`pwd`)
+### `prev`
+
+Alias: `pwd`
 
 Previous working day.
 
 It returns previous Friday's date when ran on Saturday, Sunday or Monday.
 
-### `next` (`nwd`)
+### `next`
+
+Alias: `nwd`
 
 Next working day.
 
@@ -145,7 +155,9 @@ Any date not matching the above is passed as the value of the `--date` option to
 
 ## Commands
 
-### `e` (`edit`)
+### `edit`
+
+Alias: `e`
 
 Hook scripts: `$JOT_HOOKS/pre-edit`, `$JOT_HOOKS/post-edit`
 
@@ -165,7 +177,9 @@ jot e td tm
 jot e all
 ```
 
-### `c` (`copy`)
+### `copy`
+
+Alias: `c`
 
 Hook scripts: `$JOT_HOOKS/pre-copy`, `$JOT_HOOKS/post-copy`
 
@@ -182,7 +196,9 @@ jot c
 jot c yd
 ```
 
-### `l` (`list`)
+### `list`
+
+Alias: `l`
 
 Hook scripts: `$JOT_HOOKS/pre-list`, `$JOT_HOOKS/post-list`
 
@@ -195,7 +211,9 @@ For each file, the following is displayed:
 - Number of lines
 - Path
 
-### `help` (`-h`, `--help`)
+### `help`
+
+Aliases: `-h`, `--help`
 
 Print usage help text.
 
