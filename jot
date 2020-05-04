@@ -38,15 +38,6 @@ SOURCE_URL=https://raw.githubusercontent.com/agorf/jot/master/jot
 JOT_HOME=${JOT_HOME%/}
 JOT_HOOKS=${JOT_HOOKS%/}
 
-if [[ -z "$JOT_COPY" ]]; then
-  for cmd in xclip xsel xcut sselp; do
-    if command -v $cmd >/dev/null 2>&1; then
-      JOT_COPY=$cmd
-      break
-    fi
-  done
-fi
-
 mkdir_home() {
   mkdir -p "$JOT_HOME"
 }
@@ -234,7 +225,20 @@ execute() {
   [[ $? -eq 0 ]] && hook 'post-execute'
 }
 
+set_copy_command() {
+  if [[ -z "$JOT_COPY" ]]; then
+    for cmd in xclip xsel xcut sselp; do
+      if command -v $cmd >/dev/null 2>&1; then
+        JOT_COPY=$cmd
+        break
+      fi
+    done
+  fi
+}
+
 copy() {
+  set_copy_command
+
   if [[ -z "$JOT_COPY" ]]; then
     echo 'Please set JOT_COPY to an X selection manipulation program'
     exit 1
