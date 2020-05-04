@@ -10,7 +10,7 @@ It integrates seamlessly with your text editor and terminal and supports the min
 
 ## Design goals
 
-- [Small source size][source] (~250 [LOC][]: `grep -v '^#' jot | grep -v '^$' | wc -l`)
+- [Small source size][source] (~200 [LOC][]: `grep -v '^#' jot | grep -v '^$' | wc -l`)
 - Easy [installation](#installation)
 - Plain text [note files](#notes) edited with a [text editor](#jot_editor)
 - Few [commands](#commands) with sensible defaults and aliases for less typing
@@ -177,25 +177,6 @@ jot e td tm
 jot e all
 ```
 
-### `copy`
-
-Alias: `c`
-
-Hook scripts: `$JOT_HOOKS/pre-copy`, `$JOT_HOOKS/post-copy`
-
-Copy note file contents to the clipboard with [`$JOT_COPY`](#jot_copy)
-
-Lines beginning with `#` are considered comments and are not copied. This can be used to keep note lines private when copy-pasting.
-
-Examples:
-
-```shell
-jot copy today
-jot c td
-jot c
-jot c yd
-```
-
 ### `list`
 
 Alias: `l`
@@ -330,19 +311,6 @@ export JOT_EDITOR_OPTS='"+normal G" -O'
 
 This ensures each file is opened in a vertical split window and the cursor is placed at the end of the file.
 
-### `JOT_COPY`
-
-Default: (none)
-
-Note file contents will be passed to the standard input of this command to be copied to the clipboard.
-
-jot will auto-detect the existence of the following X selection manipulation programs (in this order):
-
-- [xclip](https://github.com/astrand/xclip)
-- [xsel](http://www.vergenet.net/~conrad/software/xsel/)
-- [xcut](http://xcut.sourceforge.net/)
-- [sselp](http://tools.suckless.org/x/sselp/)
-
 ### `JOT_DATE_FMT`
 
 Default: `%a, %d %b %Y`
@@ -389,22 +357,18 @@ Edit all notes:
 jot e all
 ```
 
-Copy today's notes to the clipboard:
+Copy today's notes to the clipboard with [xclip][]:
+
+[xclip]: https://github.com/astrand/xclip
 
 ```shell
-jot copy today
-```
-
-Shortened:
-
-```shell
-jot c td
+jot xclip -- today
 ```
 
 Since `today` is the default:
 
 ```shell
-jot c
+jot xclip
 ```
 
 List all notes:

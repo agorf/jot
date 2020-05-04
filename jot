@@ -148,7 +148,6 @@ Usage: jot [<command> [<date>...]]
 command:
 
   e[dit]   edit notes for one or more dates (default)
-  c[opy]   copy notes for a date
   l[ist]   list notes
   help     print this text
   version  print the version
@@ -224,46 +223,6 @@ execute() {
   [[ $? -eq 0 ]] && hook 'post-execute'
 }
 
-set_copy_command() {
-  if [[ -z "$JOT_COPY" ]]; then
-    for cmd in xclip xsel xcut sselp; do
-      if command -v $cmd >/dev/null 2>&1; then
-        JOT_COPY=$cmd
-        break
-      fi
-    done
-  fi
-}
-
-copy() {
-  set_copy_command
-
-  if [[ -z "$JOT_COPY" ]]; then
-    echo 'Please set JOT_COPY to an X selection manipulation program'
-    exit 1
-  fi
-
-  hook 'pre-copy'
-
-  local date=$(parse_date "$1")
-  local display_date=$(date -d "$date" +"$JOT_DATE_FMT")
-  local file=$(file_from_date "$date")
-
-  if [[ ! -f "$file" ]]; then
-    echo "There are no notes for $display_date"
-    exit 1
-  fi
-
-  grep -v '^#' "$file" | sed -z '$ s/\n$//' | $JOT_COPY
-
-  if [[ $? -eq 0 ]]; then
-    local lines=$(grep -v '^#' "$file" | wc -l)
-    echo "Copied $lines line(s) to clipboard for $display_date"
-
-    hook 'post-copy'
-  fi
-}
-
 edit() {
   hook 'pre-edit'
 
@@ -329,10 +288,6 @@ case $1 in
     mkdir_home
     shift
     edit "$@"
-    ;;
-  c|copy)
-    shift
-    copy "$1"
     ;;
   l|list)
     mkdir_home
