@@ -10,6 +10,10 @@ The format is based on [Keep a Changelog][] and this project adheres to
 
 ## [Unreleased][]
 
+### Changed
+
+- Improve README
+
 ## [0.7.0][] - 2020-05-04
 
 ### Added
