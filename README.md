@@ -87,15 +87,15 @@ Self-explanatory.
 
 ### `prev`
 
-Alias: `pwd`
+Previous day with notes.
+
+### `pwd`
 
 Previous working day.
 
 It returns previous Friday's date when ran on Saturday, Sunday or Monday.
 
-### `next`
-
-Alias: `nwd`
+### `nwd`
 
 Next working day.
 

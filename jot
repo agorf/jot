@@ -52,6 +52,14 @@ mkdir_home() {
   mkdir -p "$JOT_HOME"
 }
 
+prev_day_with_notes() {
+  local today_date=$(date +"$DATE_FILE_FMT")
+  local file=$(ls -1 "$JOT_HOME"/*.$JOT_EXT | grep -v "$today_date" | tail -n 1)
+  local file_date=$(date_from_file "$file")
+
+  date -d "$file_date" +"$DATE_FILE_FMT"
+}
+
 prev_workday() {
   day_of_week=$(date +%w)
 
@@ -96,10 +104,13 @@ parse_date() {
   esac
 
   case $date in
-    prev|pwd)
+    prev)
+      prev_day_with_notes
+      ;;
+    pwd)
       prev_workday
       ;;
-    next|nwd)
+    nwd)
       next_workday
       ;;
     all)
@@ -111,6 +122,10 @@ parse_date() {
       date -d "$date" +"$DATE_FILE_FMT"
       ;;
   esac
+}
+
+date_from_file() {
+  basename "$1" .$JOT_EXT
 }
 
 file_from_date() {
@@ -154,8 +169,9 @@ date:
   td or today
   yd or yesterday
   tm or tomorrow
-  prev or pwd      previous working day
-  next or nwd      next working day
+  prev             previous day with notes
+  pwd              previous working day
+  nwd              next working day
   "3 days ago"
   "2 days"         2 days ahead
   2020-04-28       absolute date
@@ -266,7 +282,7 @@ list() {
   today_date=$(date +"$JOT_DATE_FMT")
 
   for file in "$JOT_HOME"/*.$JOT_EXT; do
-    file_date=$(basename "$file" .$JOT_EXT)
+    file_date=$(date_from_file "$file")
     date=$(date -d "$file_date" +"$JOT_DATE_FMT" | tr -d '\n')
     lines=$(wc -l "$file" | cut -d ' ' -f 1)
 

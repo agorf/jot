@@ -15,8 +15,13 @@ The format is based on [Keep a Changelog][] and this project adheres to
 - Add this change log
 - Add version badge to README
 
+### Removed
+
+- Remove `next` date alias for `nwd`
+
 ### Changed
 
+- Change `prev` from alias for `pwd` to stand for previous day with notes
 - Remove last trailing newline character when copying
 - Improve README
 
