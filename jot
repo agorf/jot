@@ -177,7 +177,7 @@ For example:
 
   jot less -- tm
 
-  jot xclip
+  jot ls -lh
 
   jot grep --color Jane -- all
 
