@@ -312,7 +312,7 @@ This ensures each file is opened in a vertical split window and the cursor is pl
 
 Default: (none)
 
-Note file contents will be passed to the standard input of this command to be copied to the clipboard.
+Note file paths will be passed as parameters to this command to be copied to the clipboard.
 
 jot will auto-detect the existence of the following X selection manipulation programs (in this order):
 
