@@ -192,7 +192,7 @@ execute() {
   local seen_separator=false
   local seen_dir=false
   local cmd=''
-  local files=()
+  local files=''
 
   for arg in "$@"; do
     if [[ $seen_separator == 'false' ]]; then
@@ -205,21 +205,19 @@ execute() {
       [[ "$arg" == 'dir' ]] && seen_dir=true
 
       local file=$(file_from_date "$arg")
-      files+=("$file")
+      files="$files $file"
     fi
   done
 
-  local files_str="${files[@]}"
-
-  if [[ -z "$files_str" ]]; then
-    files_str=$(file_from_date td)
+  if [[ -z "$files" ]]; then
+    files=$(file_from_date td)
   fi
 
   if [[ "$seen_dir" == 'true' ]]; then
-    files_str=''
+    files=''
   fi
 
-  sh -c "cd $JOT_HOME && $cmd $files_str"
+  sh -c "cd $JOT_HOME && $cmd $files"
 
   [[ $? -eq 0 ]] && hook 'post-execute'
 }
