@@ -240,12 +240,6 @@ To ask for confirmation before deleting:
 jot rm -i -- yd tm
 ```
 
-To copy yesterday's notes:
-
-```shell
-jot xclip -- yd
-```
-
 Check out the [usage examples](#usage-examples).
 
 ## Command hooks
