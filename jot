@@ -265,21 +265,7 @@ copy() {
 edit() {
   hook 'pre-edit'
 
-  local files=()
-
-  if [[ $# -eq 0 ]]; then
-    local file=$(file_from_date td)
-    files=("$file")
-  else
-    for arg in "$@"; do
-      local file=$(file_from_date "$arg")
-      files+=("$file")
-    done
-  fi
-
-  local files_str="${files[@]}"
-
-  sh -c "$JOT_EDITOR $JOT_EDITOR_OPTS $files_str"
+  execute "$JOT_EDITOR" "$JOT_EDITOR_OPTS" -- "$@"
 
   [[ $? -eq 0 ]] && hook 'post-edit'
 }
