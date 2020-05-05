@@ -173,15 +173,10 @@ Any other command will be executed and passed any notes after --
 For example:
 
   jot rm -v -- 2020-04-28
-
   jot cat -- yd td
-
   jot less -- tm
-
   jot ls -lh
-
   jot grep --color Jane -- all
-
   jot git status -- dir
 EOF
 }
