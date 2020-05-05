@@ -113,19 +113,15 @@ For example, the following lists all note files:
 jot ls -l -- all
 ```
 
-### Absolute dates
+### Custom dates
 
-Of the form `YYYY-MM-DD`
+Any date not matching the above is passed as the value of the `--date` option to the system's `date` command (`man 1 date`).
 
 Example: `2020-04-15` for the 15th of April, 2020
-
-### Relative dates
 
 Example: `"3 days ago"`
 
 Example: `"1 day"` (ahead)
-
-These should be quoted since they contain spaces.
 
 ### `dir`
 
@@ -148,10 +144,6 @@ And this which lists only today's note file:
 ```shell
 jot ls -l
 ```
-
-### Custom dates
-
-Any date not matching the above is passed as the value of the `--date` option to the system's `date` command (`man 1 date`). That's actually how relative dates work.
 
 ## Commands
 
