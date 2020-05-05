@@ -125,19 +125,8 @@ file_from_date() {
 
 hook() {
   local hook_path="$JOT_HOOKS/$1"
-  local prefix=$(echo $1 | cut -d '-' -f 1)
-  local action=$(echo $1 | cut -d '-' -f 2)
-  local all_hook_path="$JOT_HOOKS/$prefix-all"
-
-  if [[ $prefix == 'pre' ]] && [[ -x "$all_hook_path" ]]; then
-    sh -c "cd $JOT_HOME && $all_hook_path $action"
-  fi
 
   [[ -x "$hook_path" ]] && sh -c "cd $JOT_HOME && $hook_path"
-
-  if [[ $prefix == 'post' ]] && [[ -x "$all_hook_path" ]]; then
-    sh -c "cd $JOT_HOME && $all_hook_path $action"
-  fi
 }
 
 usage() {
@@ -182,7 +171,7 @@ EOF
 }
 
 execute() {
-  hook 'pre-execute'
+  hook 'pre'
 
   local seen_separator=false
   local seen_dir=false
@@ -214,7 +203,7 @@ execute() {
 
   sh -c "cd $JOT_HOME && $cmd $files"
 
-  [[ $? -eq 0 ]] && hook 'post-execute'
+  [[ $? -eq 0 ]] && hook 'post'
 }
 
 set_copy_command() {
@@ -236,8 +225,6 @@ copy() {
     exit 1
   fi
 
-  hook 'pre-copy'
-
   local date=$(parse_date "$1")
   local display_date=$(date -d "$date" +"$JOT_DATE_FMT")
   local file=$(file_from_date "$date")
@@ -252,22 +239,14 @@ copy() {
   if [[ $? -eq 0 ]]; then
     local lines=$(grep -v '^#' "$file" | wc -l)
     echo "Copied $lines line(s) to clipboard for $display_date"
-
-    hook 'post-copy'
   fi
 }
 
 edit() {
-  hook 'pre-edit'
-
   execute "$JOT_EDITOR" "$JOT_EDITOR_OPTS" -- "$@"
-
-  [[ $? -eq 0 ]] && hook 'post-edit'
 }
 
 list() {
-  hook 'pre-list'
-
   local today_date=$(date +"$JOT_DATE_FMT")
 
   for file in "$JOT_HOME"/*.$JOT_EXT; do
@@ -285,8 +264,6 @@ list() {
     printf ' (%2d) ' $lines
     echo "$file"
   done
-
-  hook 'post-list'
 }
 
 update() {

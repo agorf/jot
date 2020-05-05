@@ -159,8 +159,6 @@ Any date not matching the above is passed as the value of the `--date` option to
 
 Alias: `e`
 
-Hook scripts: `$JOT_HOOKS/pre-edit`, `$JOT_HOOKS/post-edit`
-
 Edit note file with [`$JOT_EDITOR`](#jot_editor)
 
 This is the default if you don't provide one.
@@ -181,8 +179,6 @@ jot e all
 
 Alias: `c`
 
-Hook scripts: `$JOT_HOOKS/pre-copy`, `$JOT_HOOKS/post-copy`
-
 Copy note file contents to the clipboard with [`$JOT_COPY`](#jot_copy)
 
 Lines beginning with `#` are considered comments and are not copied. This can be used to keep note lines private when copy-pasting.
@@ -199,8 +195,6 @@ jot c yd
 ### `list`
 
 Alias: `l`
-
-Hook scripts: `$JOT_HOOKS/pre-list`, `$JOT_HOOKS/post-list`
 
 List all note files in ascending date order (most recent, last)
 
@@ -241,8 +235,6 @@ Needs `wget` or `curl` to be installed.
 
 ### Custom commands
 
-Hook scripts: `$JOT_HOOKS/pre-execute`, `$JOT_HOOKS/post-execute`
-
 If the command is not one of the above, jot will execute it, passing to it as arguments any dates after `--` mapped to note file names.
 
 This makes it possible to call arbitrary commands with note files!
@@ -263,26 +255,20 @@ Check out the [usage examples](#usage-examples).
 
 ## Command hooks
 
-All [commands](#commands) support "pre" and "post" hooks: custom scripts that are executed before and/or after each command.
+The [edit](#edit) and [custom commands](#custom-commands) support "pre" and "post" hooks with `$JOT_HOOKS/pre` and `$JOT_HOOKS/post` respectively. Hooks are custom scripts marked as executable (`chmod +x`) that are executed before and/or after the command.
 
-**Note:** Hook scripts must be executable (`chmod +x`) in order to be called!
+For example, the execution order for the [edit command](#edit) is:
 
-Command-agnostic hooks are also supported with `$JOT_HOOKS/pre-all` and `$JOT_HOOKS/post-all`. These run before and/or after any command and have the command name passed to them as the `$1` argument.
-
-For example, the execution order for the `edit` command is:
-
-- `$JOT_HOOKS/pre-all`
-- `$JOT_HOOKS/pre-edit`
+- `$JOT_HOOKS/pre`
 - `edit` command
-- `$JOT_HOOKS/post-edit`
-- `$JOT_HOOKS/post-all`
+- `$JOT_HOOKS/post`
 
-The following `post-edit` hook adds changes to a [Git][] repository and pushes them to the remote, so that note files are backed up and synchronized:
+The following `post` hook adds changes to a [Git][] repository and pushes them to the remote, so that note files are backed up and synchronized:
 
 [Git]: https://git-scm.com/
 
 ```shell
-# Place this under $JOT_HOOKS/post-edit and make it executable with chmod +x
+# Place this under $JOT_HOOKS/post and make it executable with chmod +x
 
 [[ -z "$(git status -s)" ]] && exit
 
